@@ -1,0 +1,1299 @@
+{
+  "split": "tune",
+  "seed": 11,
+  "reference_day": "2026-09-23",
+  "fictional": true,
+  "items": [
+    {
+      "file": "case000_id_front.jpg",
+      "case": "tune-000",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "first_name": "ليلى",
+        "father_name": "قاسم",
+        "grandfather_name": "يوسف",
+        "surname": "الزبيدي",
+        "mother_name": "ليلى",
+        "sex": "أنثى",
+        "national_number": "231546928137",
+        "document_number": "MD4950517",
+        "name": "ليلى قاسم يوسف الزبيدي"
+      }
+    },
+    {
+      "file": "case000_id_back.jpg",
+      "case": "tune-000",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "occlusion",
+        "motion_blur"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "document_number": "MD4950517",
+        "birth_date": "2001/10/29",
+        "issue_date": "2025/10/24",
+        "expiry_date": "2035/10/24",
+        "birth_place": "السماوة"
+      }
+    },
+    {
+      "file": "case000_license.jpg",
+      "case": "tune-000",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "cut_off_right",
+        "angle",
+        "dark",
+        "occlusion",
+        "motion_blur"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "رقية يوسف عادل",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-87094",
+        "activity": "تجارة سيارات",
+        "issue_date": "2024/11/12",
+        "expiry_date": "2027/11/12"
+      }
+    },
+    {
+      "file": "case000_tax.jpg",
+      "case": "tune-000",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "ليلى قاسم يوسف الزبيدي",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "0050393307",
+        "issue_date": "2025/03/31",
+        "expiry_date": "2027/03/31"
+      }
+    },
+    {
+      "file": "case001_id_front.jpg",
+      "case": "tune-001",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "ماجد",
+        "father_name": "سمير",
+        "grandfather_name": "حيدر",
+        "surname": "السامرائي",
+        "mother_name": "ليلى",
+        "sex": "ذكر",
+        "national_number": "146430733276",
+        "document_number": "RW8196288",
+        "name": "ماجد سمير حيدر السامرائي"
+      }
+    },
+    {
+      "file": "case001_id_back.jpg",
+      "case": "tune-001",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "RW8196288",
+        "birth_date": "1984/10/07",
+        "issue_date": "2021/11/06",
+        "expiry_date": "2031/11/06",
+        "birth_place": "السماوة"
+      }
+    },
+    {
+      "file": "case001_license.jpg",
+      "case": "tune-001",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد سمير حيدر",
+        "business_name": "شركة النور للتجارة العامة",
+        "license_number": "BL-93262",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2025/12/06",
+        "expiry_date": "2028/12/05"
+      }
+    },
+    {
+      "file": "case001_tax.jpg",
+      "case": "tune-001",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد سمير حيدر السامرائي",
+        "business_name": "شركة النور للتجارة العامة",
+        "tax_number": "7555546429",
+        "issue_date": "2026/05/29",
+        "expiry_date": "2028/05/28"
+      }
+    },
+    {
+      "file": "case002_id_front.jpg",
+      "case": "tune-002",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "ليلى",
+        "father_name": "فاضل",
+        "grandfather_name": "محمد",
+        "surname": "الجبوري",
+        "mother_name": "ليلى",
+        "sex": "أنثى",
+        "national_number": "180572986391",
+        "document_number": "YY4241582",
+        "name": "ليلى فاضل محمد الجبوري"
+      }
+    },
+    {
+      "file": "case002_id_back.jpg",
+      "case": "tune-002",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "YY4241582",
+        "birth_date": "2003/01/20",
+        "issue_date": "2021/12/03",
+        "expiry_date": "2031/12/03",
+        "birth_place": "السماوة"
+      }
+    },
+    {
+      "file": "case002_license.jpg",
+      "case": "tune-002",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "ليلى فاضل محمد",
+        "business_name": "شركة دجلة للمقاولات",
+        "license_number": "BL-96293",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2025/09/09",
+        "expiry_date": "2028/09/08"
+      }
+    },
+    {
+      "file": "case002_tax.jpg",
+      "case": "tune-002",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "cut_off_bottom",
+        "angle",
+        "glare",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ليلى فاضل محمد الجبوري",
+        "business_name": "شركة دجلة للمقاولات",
+        "tax_number": "9952017145",
+        "issue_date": "2026/01/23",
+        "expiry_date": "2028/01/23"
+      }
+    },
+    {
+      "file": "case003_id_front.jpg",
+      "case": "tune-003",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "ماجد",
+        "father_name": "يوسف",
+        "grandfather_name": "حسين",
+        "surname": "العامري",
+        "mother_name": "رقية",
+        "sex": "ذكر",
+        "national_number": "267768988279",
+        "document_number": "PT1845782",
+        "name": "ماجد يوسف حسين العامري"
+      }
+    },
+    {
+      "file": "case003_id_back.jpg",
+      "case": "tune-003",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "PT1845782",
+        "birth_date": "2000/07/29",
+        "issue_date": "2023/02/14",
+        "expiry_date": "2033/02/14",
+        "birth_place": "النجف"
+      }
+    },
+    {
+      "file": "case003_license.jpg",
+      "case": "tune-003",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد يوسف حسين",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "license_number": "BL-18987",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2024/05/08",
+        "expiry_date": "2027/05/08"
+      }
+    },
+    {
+      "file": "case003_tax.jpg",
+      "case": "tune-003",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد يوسف حسين العامري",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "tax_number": "2525437148",
+        "issue_date": "2025/03/18",
+        "expiry_date": "2027/03/18"
+      }
+    },
+    {
+      "file": "case004_id_front.jpg",
+      "case": "tune-004",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "first_name": "حيدر",
+        "father_name": "كريم",
+        "grandfather_name": "قاسم",
+        "surname": "العامري",
+        "mother_name": "فاطمة",
+        "sex": "ذكر",
+        "national_number": "172495419262",
+        "document_number": "BN4252231",
+        "name": "حيدر كريم قاسم العامري"
+      }
+    },
+    {
+      "file": "case004_id_back.jpg",
+      "case": "tune-004",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "document_number": "BN4252231",
+        "birth_date": "1969/09/26",
+        "issue_date": "2022/04/30",
+        "expiry_date": "2032/04/30",
+        "birth_place": "البصرة"
+      }
+    },
+    {
+      "file": "case004_license.jpg",
+      "case": "tune-004",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "حيدر كريم قاسم",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "license_number": "BL-45977",
+        "activity": "نقل بضائع",
+        "issue_date": "2020/12/13",
+        "expiry_date": "2023/12/13"
+      }
+    },
+    {
+      "file": "case004_tax.jpg",
+      "case": "tune-004",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "cut_off_right",
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "حيدر كريم قاسم العامري",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "tax_number": "4868745167",
+        "issue_date": "2026/01/09",
+        "expiry_date": "2028/01/09"
+      }
+    },
+    {
+      "file": "case005_id_front.jpg",
+      "case": "tune-005",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "فاضل",
+        "father_name": "يوسف",
+        "grandfather_name": "خالد",
+        "surname": "الزبيدي",
+        "mother_name": "سارة",
+        "sex": "ذكر",
+        "national_number": "279136993150",
+        "document_number": "XV8251907",
+        "name": "فاضل يوسف خالد الزبيدي"
+      }
+    },
+    {
+      "file": "case005_id_back.jpg",
+      "case": "tune-005",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "worst",
+      "degradations": [
+        "cut_off_bottom",
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "XV8251907",
+        "birth_date": "1968/03/25",
+        "issue_date": "2017/06/11",
+        "expiry_date": "2027/06/11",
+        "birth_place": "الكوت"
+      }
+    },
+    {
+      "file": "case005_license.jpg",
+      "case": "tune-005",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "dark",
+        "occlusion",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "فاضل يوسف خالد",
+        "business_name": "شركة النور للتجارة العامة",
+        "license_number": "BL-49994",
+        "activity": "تجارة سيارات",
+        "issue_date": "2023/11/11",
+        "expiry_date": "2026/11/10"
+      }
+    },
+    {
+      "file": "case005_tax.jpg",
+      "case": "tune-005",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "فاضل يوسف خالد الزبيدي",
+        "business_name": "شركة النور للتجارة العامة",
+        "tax_number": "9518654265",
+        "issue_date": "2026/01/17",
+        "expiry_date": "2028/01/17"
+      }
+    },
+    {
+      "file": "case006_id_front.jpg",
+      "case": "tune-006",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "فاطمة",
+        "father_name": "ماجد",
+        "grandfather_name": "حسين",
+        "surname": "الشمري",
+        "mother_name": "ليلى",
+        "sex": "أنثى",
+        "national_number": "114356918059",
+        "document_number": "RX5723121",
+        "name": "فاطمة ماجد حسين الشمري"
+      }
+    },
+    {
+      "file": "case006_id_back.jpg",
+      "case": "tune-006",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "RX5723121",
+        "birth_date": "1999/05/05",
+        "issue_date": "2022/06/24",
+        "expiry_date": "2032/06/24",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case006_license.jpg",
+      "case": "tune-006",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "فاطمة ماجد حسين",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-70056",
+        "activity": "بيع أجهزة كهربائية",
+        "issue_date": "2025/07/03",
+        "expiry_date": "2028/07/02"
+      }
+    },
+    {
+      "file": "case006_tax.jpg",
+      "case": "tune-006",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "فاطمة ماجد حسين الشمري",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "5546253271",
+        "issue_date": "2025/12/12",
+        "expiry_date": "2027/12/12"
+      }
+    },
+    {
+      "file": "case007_id_front.jpg",
+      "case": "tune-007",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "فاضل",
+        "father_name": "قاسم",
+        "grandfather_name": "خالد",
+        "surname": "الجبوري",
+        "mother_name": "فاطمة",
+        "sex": "ذكر",
+        "national_number": "192847241962",
+        "document_number": "NX0175130",
+        "name": "فاضل قاسم خالد الجبوري"
+      }
+    },
+    {
+      "file": "case007_id_back.jpg",
+      "case": "tune-007",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "NX0175130",
+        "birth_date": "2003/08/07",
+        "issue_date": "2023/10/28",
+        "expiry_date": "2033/10/28",
+        "birth_place": "الديوانية"
+      }
+    },
+    {
+      "file": "case007_license.jpg",
+      "case": "tune-007",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "فاضل قاسم خالد",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-20288",
+        "activity": "خدمات مكتبية",
+        "issue_date": "2024/04/16",
+        "expiry_date": "2027/04/16"
+      }
+    },
+    {
+      "file": "case007_tax.jpg",
+      "case": "tune-007",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "فاضل قاسم خالد الجبوري",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "3152393783",
+        "issue_date": "2026/01/16",
+        "expiry_date": "2028/01/16"
+      }
+    },
+    {
+      "file": "case008_id_front.jpg",
+      "case": "tune-008",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "first_name": "سمير",
+        "father_name": "خالد",
+        "grandfather_name": "سمير",
+        "surname": "الجبوري",
+        "mother_name": "مريم",
+        "sex": "ذكر",
+        "national_number": "261336158177",
+        "document_number": "UL6875973",
+        "name": "سمير خالد سمير الجبوري"
+      }
+    },
+    {
+      "file": "case008_id_back.jpg",
+      "case": "tune-008",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "document_number": "UL6875973",
+        "birth_date": "1983/06/30",
+        "issue_date": "2024/10/14",
+        "expiry_date": "2034/10/14",
+        "birth_place": "الحلة"
+      }
+    },
+    {
+      "file": "case008_license.jpg",
+      "case": "tune-008",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "سمير خالد سمير",
+        "business_name": "صيدلية الشفاء الأهلية",
+        "license_number": "BL-73263",
+        "activity": "بيع أجهزة كهربائية",
+        "issue_date": "2020/06/06",
+        "expiry_date": "2023/06/06"
+      }
+    },
+    {
+      "file": "case008_tax.jpg",
+      "case": "tune-008",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "سمير خالد سمير الجبوري",
+        "business_name": "صيدلية الشفاء الأهلية",
+        "tax_number": "8252371709",
+        "issue_date": "2025/03/10",
+        "expiry_date": "2027/03/10"
+      }
+    },
+    {
+      "file": "case009_id_front.jpg",
+      "case": "tune-009",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "first_name": "سمير",
+        "father_name": "حيدر",
+        "grandfather_name": "علي",
+        "surname": "الجبوري",
+        "mother_name": "رقية",
+        "sex": "ذكر",
+        "national_number": "182039478339",
+        "document_number": "MP2831169",
+        "name": "سمير حيدر علي الجبوري"
+      }
+    },
+    {
+      "file": "case009_id_back.jpg",
+      "case": "tune-009",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "document_number": "MP2831169",
+        "birth_date": "1973/01/19",
+        "issue_date": "2019/05/12",
+        "expiry_date": "2029/05/12",
+        "birth_place": "الناصرية"
+      }
+    },
+    {
+      "file": "case009_license.jpg",
+      "case": "tune-009",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "ماجد عادل محمد",
+        "business_name": "شركة دجلة للمقاولات",
+        "license_number": "BL-73739",
+        "activity": "تطوير برمجيات",
+        "issue_date": "2024/12/20",
+        "expiry_date": "2027/12/20"
+      }
+    },
+    {
+      "file": "case009_tax.jpg",
+      "case": "tune-009",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "سمير حيدر علي الجبوري",
+        "business_name": "شركة دجلة للمقاولات",
+        "tax_number": "1645599627",
+        "issue_date": "2026/02/17",
+        "expiry_date": "2028/02/17"
+      }
+    },
+    {
+      "file": "case010_id_front.jpg",
+      "case": "tune-010",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "first_name": "حيدر",
+        "father_name": "فاضل",
+        "grandfather_name": "حيدر",
+        "surname": "الشمري",
+        "mother_name": "نادية",
+        "sex": "ذكر",
+        "national_number": "284025046221",
+        "document_number": "VH5832577",
+        "name": "حيدر فاضل حيدر الشمري"
+      }
+    },
+    {
+      "file": "case010_id_back.jpg",
+      "case": "tune-010",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "document_number": "VY0680511",
+        "birth_date": "1988/05/19",
+        "issue_date": "2024/05/23",
+        "expiry_date": "2034/05/23",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case010_license.jpg",
+      "case": "tune-010",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "حيدر فاضل حيدر",
+        "business_name": "شركة النور للتجارة العامة",
+        "license_number": "BL-67642",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2025/06/13",
+        "expiry_date": "2028/06/12"
+      }
+    },
+    {
+      "file": "case010_tax.jpg",
+      "case": "tune-010",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "حيدر فاضل حيدر الشمري",
+        "business_name": "شركة النور للتجارة العامة",
+        "tax_number": "7022116562",
+        "issue_date": "2025/05/22",
+        "expiry_date": "2027/05/22"
+      }
+    },
+    {
+      "file": "case011_id_front.jpg",
+      "case": "tune-011",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "ماجد",
+        "father_name": "حسين",
+        "grandfather_name": "حسين",
+        "surname": "الجبوري",
+        "mother_name": "فاطمة",
+        "sex": "ذكر",
+        "national_number": "109862366193",
+        "document_number": "LZ5187604",
+        "name": "ماجد حسين حسين الجبوري"
+      }
+    },
+    {
+      "file": "case011_id_back.jpg",
+      "case": "tune-011",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "LZ5187604",
+        "birth_date": "1987/02/23",
+        "issue_date": "2023/11/24",
+        "expiry_date": "2033/11/24",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case011_license.jpg",
+      "case": "tune-011",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "dark",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد حسين حسين",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-26554",
+        "activity": "خدمات مكتبية",
+        "issue_date": "2025/08/24",
+        "expiry_date": "2028/08/23"
+      }
+    },
+    {
+      "file": "case011_tax.jpg",
+      "case": "tune-011",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "cut_off_bottom",
+        "angle",
+        "dark",
+        "glare",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ماجد حسين حسين الجبوري",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "2776682035",
+        "issue_date": "2026/01/08",
+        "expiry_date": "2028/01/08"
+      }
+    },
+    {
+      "file": "case012_id_front.jpg",
+      "case": "tune-012",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "سمير",
+        "father_name": "فاضل",
+        "grandfather_name": "خالد",
+        "surname": "العامري",
+        "mother_name": "نادية",
+        "sex": "ذكر",
+        "national_number": "257517318009",
+        "document_number": "PF4535256",
+        "name": "سمير فاضل خالد العامري"
+      }
+    },
+    {
+      "file": "case012_id_back.jpg",
+      "case": "tune-012",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "PF4535256",
+        "birth_date": "1982/12/27",
+        "issue_date": "2020/08/22",
+        "expiry_date": "2030/08/22",
+        "birth_place": "بغداد"
+      }
+    },
+    {
+      "file": "case012_license.jpg",
+      "case": "tune-012",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "سمير فاضل خالد",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-33685",
+        "activity": "مخابز",
+        "issue_date": "2024/03/01",
+        "expiry_date": "2027/03/01"
+      }
+    },
+    {
+      "file": "case012_tax.jpg",
+      "case": "tune-012",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "سمير فاضل خالد العامري",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "8785741987",
+        "issue_date": "2026/02/09",
+        "expiry_date": "2028/02/09"
+      }
+    },
+    {
+      "file": "case013_id_front.jpg",
+      "case": "tune-013",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "رقية",
+        "father_name": "خالد",
+        "grandfather_name": "قاسم",
+        "surname": "السامرائي",
+        "mother_name": "مريم",
+        "sex": "أنثى",
+        "national_number": "203494460232",
+        "document_number": "TH2691277",
+        "name": "رقية خالد قاسم السامرائي"
+      }
+    },
+    {
+      "file": "case013_id_back.jpg",
+      "case": "tune-013",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "TH2691277",
+        "birth_date": "1999/11/21",
+        "issue_date": "2018/09/16",
+        "expiry_date": "2028/09/16",
+        "birth_place": "بغداد"
+      }
+    },
+    {
+      "file": "case013_license.jpg",
+      "case": "tune-013",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "cut_off_left",
+        "angle",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "رقية خالد قاسم",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "license_number": "BL-65252",
+        "activity": "تجارة سيارات",
+        "issue_date": "2025/10/01",
+        "expiry_date": "2028/09/30"
+      }
+    },
+    {
+      "file": "case013_tax.jpg",
+      "case": "tune-013",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "رقية خالد قاسم السامرائي",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "tax_number": "2025985496",
+        "issue_date": "2025/01/18",
+        "expiry_date": "2027/01/18"
+      }
+    },
+    {
+      "file": "case014_id_front.jpg",
+      "case": "tune-014",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "occlusion",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "نادية",
+        "father_name": "سمير",
+        "grandfather_name": "حسين",
+        "surname": "الزبيدي",
+        "mother_name": "ليلى",
+        "sex": "أنثى",
+        "national_number": "107233155659",
+        "document_number": "AE1640720",
+        "name": "نادية سمير حسين الزبيدي"
+      }
+    },
+    {
+      "file": "case014_id_back.jpg",
+      "case": "tune-014",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "AE1640720",
+        "birth_date": "1976/08/18",
+        "issue_date": "2021/01/07",
+        "expiry_date": "2031/01/07",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case014_license.jpg",
+      "case": "tune-014",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "نادية سمير حسين",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "license_number": "BL-91830",
+        "activity": "نقل بضائع",
+        "issue_date": "2024/07/08",
+        "expiry_date": "2027/07/08"
+      }
+    },
+    {
+      "file": "case014_tax.jpg",
+      "case": "tune-014",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "نادية سمير حسين الزبيدي",
+        "business_name": "شركة الواحة للمواد الغذائية",
+        "tax_number": "8624581904",
+        "issue_date": "2026/03/22",
+        "expiry_date": "2028/03/21"
+      }
+    },
+    {
+      "file": "case015_id_front.jpg",
+      "case": "tune-015",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "ليلى",
+        "father_name": "علي",
+        "grandfather_name": "حيدر",
+        "surname": "السامرائي",
+        "mother_name": "نادية",
+        "sex": "أنثى",
+        "national_number": "265075201116",
+        "document_number": "AP5766959",
+        "name": "ليلى علي حيدر السامرائي"
+      }
+    },
+    {
+      "file": "case015_id_back.jpg",
+      "case": "tune-015",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "worst",
+      "degradations": [
+        "cut_off_left",
+        "angle",
+        "dark",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "AP5766959",
+        "birth_date": "1996/08/07",
+        "issue_date": "2022/08/30",
+        "expiry_date": "2032/08/30",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case015_license.jpg",
+      "case": "tune-015",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ليلى علي حيدر",
+        "business_name": "شركة الجسر للبرمجيات",
+        "license_number": "BL-75994",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2024/07/29",
+        "expiry_date": "2027/07/29"
+      }
+    },
+    {
+      "file": "case015_tax.jpg",
+      "case": "tune-015",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "ليلى علي حيدر السامرائي",
+        "business_name": "شركة الجسر للبرمجيات",
+        "tax_number": "7691291419",
+        "issue_date": "2025/07/27",
+        "expiry_date": "2027/07/27"
+      }
+    }
+  ]
+}

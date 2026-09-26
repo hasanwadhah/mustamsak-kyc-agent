@@ -1,0 +1,632 @@
+{
+  "split": "tune",
+  "threshold": 0.9,
+  "images": 64,
+  "calibrated": true,
+  "fields": {
+    "overall": {
+      "fields": 400,
+      "read_rate": 0.7075,
+      "accuracy_when_read": 0.8693,
+      "misread_rate": 0.0925,
+      "auto_accepted_rate": 0.3275,
+      "accuracy_of_auto_accepted": 1.0,
+      "routed_to_human_rate": 0.6725
+    },
+    "critical": {
+      "fields": 192,
+      "read_rate": 0.6927,
+      "accuracy_when_read": 0.8195,
+      "misread_rate": 0.125,
+      "auto_accepted_rate": 0.3958,
+      "accuracy_of_auto_accepted": 1.0,
+      "routed_to_human_rate": 0.6042
+    },
+    "by_level": {
+      "clean": {
+        "fields": 86,
+        "read_rate": 0.9651,
+        "accuracy_when_read": 0.9639,
+        "misread_rate": 0.0349,
+        "auto_accepted_rate": 0.6512,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.3488
+      },
+      "poor": {
+        "fields": 182,
+        "read_rate": 0.9121,
+        "accuracy_when_read": 0.8976,
+        "misread_rate": 0.0934,
+        "auto_accepted_rate": 0.3626,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.6374
+      },
+      "worst": {
+        "fields": 132,
+        "read_rate": 0.2576,
+        "accuracy_when_read": 0.5,
+        "misread_rate": 0.1288,
+        "auto_accepted_rate": 0.0682,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.9318
+      }
+    },
+    "by_kind": {
+      "business_license": {
+        "fields": 96,
+        "read_rate": 0.5833,
+        "accuracy_when_read": 0.6786,
+        "misread_rate": 0.1875,
+        "auto_accepted_rate": 0.1771,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.8229
+      },
+      "national_id": {
+        "fields": 224,
+        "read_rate": 0.7634,
+        "accuracy_when_read": 0.9357,
+        "misread_rate": 0.0491,
+        "auto_accepted_rate": 0.4286,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.5714
+      },
+      "tax_card": {
+        "fields": 80,
+        "read_rate": 0.7,
+        "accuracy_when_read": 0.8571,
+        "misread_rate": 0.1,
+        "auto_accepted_rate": 0.225,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.775
+      }
+    },
+    "by_key": {
+      "activity": {
+        "fields": 16,
+        "read_rate": 0.625,
+        "accuracy_when_read": 0.8,
+        "misread_rate": 0.125,
+        "auto_accepted_rate": 0.375,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.625
+      },
+      "birth_date": {
+        "fields": 16,
+        "read_rate": 0.8125,
+        "accuracy_when_read": 0.9231,
+        "misread_rate": 0.0625,
+        "auto_accepted_rate": 0.375,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.625
+      },
+      "birth_place": {
+        "fields": 16,
+        "read_rate": 0.75,
+        "accuracy_when_read": 0.9167,
+        "misread_rate": 0.0625,
+        "auto_accepted_rate": 0.5625,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.4375
+      },
+      "business_name": {
+        "fields": 32,
+        "read_rate": 0.8125,
+        "accuracy_when_read": 0.6923,
+        "misread_rate": 0.25,
+        "auto_accepted_rate": 0.375,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.625
+      },
+      "document_number": {
+        "fields": 32,
+        "read_rate": 0.7812,
+        "accuracy_when_read": 1.0,
+        "misread_rate": 0.0,
+        "auto_accepted_rate": 0.75,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.25
+      },
+      "expiry_date": {
+        "fields": 48,
+        "read_rate": 0.5833,
+        "accuracy_when_read": 0.9643,
+        "misread_rate": 0.0208,
+        "auto_accepted_rate": 0.2083,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.7917
+      },
+      "father_name": {
+        "fields": 16,
+        "read_rate": 0.8125,
+        "accuracy_when_read": 1.0,
+        "misread_rate": 0.0,
+        "auto_accepted_rate": 0.375,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.625
+      },
+      "first_name": {
+        "fields": 16,
+        "read_rate": 0.8125,
+        "accuracy_when_read": 0.9231,
+        "misread_rate": 0.0625,
+        "auto_accepted_rate": 0.3125,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.6875
+      },
+      "grandfather_name": {
+        "fields": 16,
+        "read_rate": 0.6875,
+        "accuracy_when_read": 0.9091,
+        "misread_rate": 0.0625,
+        "auto_accepted_rate": 0.1875,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.8125
+      },
+      "issue_date": {
+        "fields": 48,
+        "read_rate": 0.6667,
+        "accuracy_when_read": 0.9375,
+        "misread_rate": 0.0417,
+        "auto_accepted_rate": 0.1875,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.8125
+      },
+      "license_number": {
+        "fields": 16,
+        "read_rate": 0.5625,
+        "accuracy_when_read": 0.8889,
+        "misread_rate": 0.0625,
+        "auto_accepted_rate": 0.125,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.875
+      },
+      "mother_name": {
+        "fields": 16,
+        "read_rate": 0.75,
+        "accuracy_when_read": 1.0,
+        "misread_rate": 0.0,
+        "auto_accepted_rate": 0.1875,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.8125
+      },
+      "name": {
+        "fields": 48,
+        "read_rate": 0.7083,
+        "accuracy_when_read": 0.5882,
+        "misread_rate": 0.2917,
+        "auto_accepted_rate": 0.3125,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.6875
+      },
+      "national_number": {
+        "fields": 16,
+        "read_rate": 0.875,
+        "accuracy_when_read": 1.0,
+        "misread_rate": 0.0,
+        "auto_accepted_rate": 0.8125,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.1875
+      },
+      "sex": {
+        "fields": 16,
+        "read_rate": 0.6875,
+        "accuracy_when_read": 1.0,
+        "misread_rate": 0.0,
+        "auto_accepted_rate": 0.0625,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.9375
+      },
+      "surname": {
+        "fields": 16,
+        "read_rate": 0.75,
+        "accuracy_when_read": 0.75,
+        "misread_rate": 0.1875,
+        "auto_accepted_rate": 0.375,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.625
+      },
+      "tax_number": {
+        "fields": 16,
+        "read_rate": 0.5,
+        "accuracy_when_read": 0.75,
+        "misread_rate": 0.125,
+        "auto_accepted_rate": 0.0625,
+        "accuracy_of_auto_accepted": 1.0,
+        "routed_to_human_rate": 0.9375
+      }
+    }
+  },
+  "calibration": {
+    "ece_raw": 0.05,
+    "ece_calibrated": 0.035,
+    "reliability": [
+      {
+        "bin": "0.6-0.7",
+        "n": 63,
+        "mean_confidence": 0.67,
+        "accuracy": 0.683
+      },
+      {
+        "bin": "0.7-0.8",
+        "n": 45,
+        "mean_confidence": 0.781,
+        "accuracy": 0.822
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 44,
+        "mean_confidence": 0.827,
+        "accuracy": 0.795
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 131,
+        "mean_confidence": 0.955,
+        "accuracy": 1.0
+      }
+    ]
+  },
+  "capture": {
+    "retake_rate_clean": 0.0,
+    "retake_rate_poor": 0.2143,
+    "retake_rate_worst": 0.619,
+    "cut_off_recall": 0.8571,
+    "cut_off_images": 7,
+    "cut_off_false_alarm_rate": 0.0351,
+    "glare_detected_rate": 0.5625,
+    "classification_accuracy": 0.8594
+  },
+  "kyc": {
+    "cases": 16,
+    "flawed_cases": 5,
+    "false_pass_on_flawed_cases": 0,
+    "flaw_named_in_summary_rate": 0.6,
+    "auto_pass_rate_consistent_cases": 0.0,
+    "consistent_cases_fully_read": 0,
+    "auto_pass_rate_fully_read_cases": null,
+    "passed_with_wrong_critical_field": 0,
+    "details": [
+      {
+        "case": "tune-000",
+        "problem": "name_mismatch",
+        "levels": [
+          "poor",
+          "worst",
+          "worst",
+          "worst"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": true,
+        "wrong_critical_fields": [
+          "id_back:document_number",
+          "id_back:birth_date",
+          "id_back:expiry_date",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 6 item(s):\n1. not identified: national ID card (back). 2 document(s) have an unknown type or side — set it manually or retake the photo\n2. not identified: business licence. 2 document(s) have an unknown type or side — set it manually or retake the photo\n3. full name (national ID card (front)): \"ليلى قاسم يوسف الزبيدي\" at 83% confidence, below the 90% threshold (conflicting readings) — compare with the image\n4. full name (tax card): \"ليلى قاسم يوسف الزبيدي\" at 83% confidence, below the 90% threshold — compare with the image\n5. tax number (tax card): not read — left blank, never filled in\n6. Name: national ID card (front) vs tax card: appear to match but reading confidence is below threshold (\"ليلى قاسم يوسف الزبيدي\" / \"ليلى قاسم يوسف الزبيدي\")\nAsk for a new photo: unidentified document: Part of the document is outside the frame (left); retake with a margin around all four edges. | unidentified document: The lighting is too dark; photograph near a light source without shadows on the document."
+      },
+      {
+        "case": "tune-001",
+        "problem": null,
+        "levels": [
+          "poor",
+          "clean",
+          "poor",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "tax:name"
+        ],
+        "summary_en": "Needs human review — 11 item(s):\n1. full name (national ID card (front)): \"ماجد سمير حيدر امرائي\" at 65% confidence, below the 90% threshold (conflicting readings) — compare with the image\n2. date of birth (national ID card (back)): \"1984/10/07\" at 66% confidence, below the 90% threshold — compare with the image\n3. full name (business licence): \"ماجرسررر\" at 70% confidence, below the 90% threshold — compare with the image\n4. business name (business licence): \"شركه النورلتجارة العامة\" at 83% confidence, below the 90% threshold — compare with the image\n5. licence number (business licence): \"BL-93262019\" at 79% confidence, below the 90% threshold — compare with the image\n6. expiry date (business licence): \"2028/12/05\" at 79% confidence, below the 90% threshold — compare with the image\n7. full name (tax card): \"ماجد سمير حيد\" at 82% confidence, below the 90% threshold — compare with the image\n8. tax number (tax card): \"7555546429\" at 70% confidence, below the 90% threshold — compare with the image\n… and 3 more.\nAsk for a new photo: tax card: Glare on the document (top) may hide fields; tilt the phone slightly to remove the reflection."
+      },
+      {
+        "case": "tune-002",
+        "problem": null,
+        "levels": [
+          "worst",
+          "clean",
+          "clean",
+          "worst"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "license:name",
+          "license:expiry_date",
+          "tax:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 6 item(s):\n1. required document missing: tax card\n2. full name (national ID card (front)): \"ليلى فاضل محمد الحبوري\" at 65% confidence, below the 90% threshold (conflicting readings) — compare with the image\n3. date of birth (national ID card (back)): \"2003/01/20\" at 66% confidence, below the 90% threshold — compare with the image\n4. full name (business licence): \"يل فاضتل محمر\" at 66% confidence, below the 90% threshold — compare with the image\n5. expiry date (business licence): \"2028/08/09\" at 82% confidence, below the 90% threshold — compare with the image\n6. Name: national ID card (front) vs business licence: names differ (\"ليلى فاضل محمد الحبوري\" / \"يل فاضتل محمر\")"
+      },
+      {
+        "case": "tune-003",
+        "problem": null,
+        "levels": [
+          "poor",
+          "clean",
+          "worst",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 8 item(s):\n1. date of birth (national ID card (back)): \"2000/07/29\" at 66% confidence, below the 90% threshold — compare with the image\n2. full name (business licence): \"ماجرون س\" at 66% confidence, below the 90% threshold — compare with the image\n3. business name (business licence): \"شركة الواحه للمواد العدائيه\" at 70% confidence, below the 90% threshold — compare with the image\n4. licence number (business licence): not read — left blank, never filled in\n5. expiry date (business licence): not read — left blank, never filled in\n6. tax number (tax card): not read — left blank, never filled in\n7. Name: national ID card (front) vs business licence: names differ (\"ماجد يوسف حسين العامري\" / \"ماجرون س\")\n8. Business name, licence vs tax card: values differ («شركة الواحه للمواد العدائيه» / «شركة الواحة للمواد الغذائية»)\nAsk for a new photo: business licence: Part of the document is outside the frame (bottom); retake with a margin around all four edges."
+      },
+      {
+        "case": "tune-004",
+        "problem": "expired_license",
+        "levels": [
+          "poor",
+          "poor",
+          "poor",
+          "worst"
+        ],
+        "decision": "review",
+        "blocking_reasons": 2,
+        "problem_named": false,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "license:name",
+          "tax:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 7 item(s):\n1. full name (national ID card (front)): not read — left blank, never filled in\n2. full name (business licence): \"حيدر كريم فاسم\" at 89% confidence, below the 90% threshold — compare with the image\n3. business name (business licence): \"شركة الواحة للمواد الغذائية\" at 79% confidence, below the 90% threshold — compare with the image\n4. licence number (business licence): \"BL-45977\" at 79% confidence, below the 90% threshold — compare with the image\n5. expiry date (business licence): \"2023/12/13\" at 79% confidence, below the 90% threshold — compare with the image; document expired on 2023/12/13\n6. full name (tax card): not read — left blank, never filled in\n7. tax number (tax card): not read — left blank, never filled in\nAsk for a new photo: tax card: Part of the document is outside the frame (right); retake with a margin around all four edges."
+      },
+      {
+        "case": "tune-005",
+        "problem": null,
+        "levels": [
+          "clean",
+          "worst",
+          "worst",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_back:document_number",
+          "id_back:birth_date",
+          "id_back:expiry_date",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 7 item(s):\n1. not identified: national ID card (back). 1 document(s) have an unknown type or side — set it manually or retake the photo\n2. full name (business licence): not read — left blank, never filled in\n3. business name (business licence): \"سركه الور للتحارة العامة\" at 70% confidence, below the 90% threshold — compare with the image\n4. licence number (business licence): not read — left blank, never filled in\n5. expiry date (business licence): not read — left blank, never filled in\n6. tax number (tax card): not read — left blank, never filled in\n7. Business name, licence vs tax card: values differ («سركه الور للتحارة العامة» / «شركة التور للتجارة العامة»)\nAsk for a new photo: unidentified document: Part of the document is outside the frame (bottom); retake with a margin around all four edges. | business licence: The lighting is too dark; photograph near a light source without shadows on the document. | tax card: The photo is blurry; hold the phone steady and let it focus before capturing."
+      },
+      {
+        "case": "tune-006",
+        "problem": null,
+        "levels": [
+          "clean",
+          "clean",
+          "poor",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "license:name",
+          "license:expiry_date"
+        ],
+        "summary_en": "Needs human review — 4 item(s):\n1. full name (business licence): \"اف ماجرحس\" at 66% confidence, below the 90% threshold — compare with the image\n2. licence number (business licence): \"BL-70056\" at 79% confidence, below the 90% threshold — compare with the image\n3. expiry date (business licence): not read — left blank, never filled in\n4. Name: national ID card (front) vs business licence: names differ (\"فاطمة ماجد حسين الشمري\" / \"اف ماجرحس\")"
+      },
+      {
+        "case": "tune-007",
+        "problem": null,
+        "levels": [
+          "worst",
+          "poor",
+          "clean",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 2,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "id_front:national_number",
+          "id_front:document_number"
+        ],
+        "summary_en": "Needs human review — 4 item(s):\n1. required document missing: national ID card (front)\n2. expiry date (business licence): \"2027/04/16\" at 82% confidence, below the 90% threshold — compare with the image\n3. full name (tax card): \"فاضل قاسم خالد الجبوري\" at 82% confidence, below the 90% threshold — compare with the image\n4. tax number (tax card): \"3152393783\" at 70% confidence, below the 90% threshold — compare with the image\nAsk for a new photo: tax card: Glare on the document (bottom, right) may hide fields; tilt the phone slightly to remove the reflection."
+      },
+      {
+        "case": "tune-008",
+        "problem": "expired_license",
+        "levels": [
+          "worst",
+          "poor",
+          "clean",
+          "clean"
+        ],
+        "decision": "review",
+        "blocking_reasons": 2,
+        "problem_named": false,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 4 item(s):\n1. full name (national ID card (front)): not read — left blank, never filled in\n2. licence number (business licence): \"BL-73263\" at 82% confidence, below the 90% threshold — compare with the image\n3. expiry date (business licence): \"2023/06/06\" at 82% confidence, below the 90% threshold — compare with the image; document expired on 2023/06/06\n4. tax number (tax card): \"798252371709\" at 82% confidence, below the 90% threshold — compare with the image"
+      },
+      {
+        "case": "tune-009",
+        "problem": "name_mismatch",
+        "levels": [
+          "poor",
+          "poor",
+          "poor",
+          "clean"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": true,
+        "wrong_critical_fields": [
+          "id_back:document_number",
+          "license:name",
+          "license:expiry_date"
+        ],
+        "summary_en": "Needs human review — 9 item(s):\n1. card number (national ID card (back)): not read — left blank, never filled in\n2. date of birth (national ID card (back)): \"1973/01/19\" at 83% confidence, below the 90% threshold — compare with the image\n3. expiry date (national ID card (back)): \"2029/05/12\" at 83% confidence, below the 90% threshold — compare with the image\n4. full name (business licence): \"ماجرواو مر\" at 66% confidence, below the 90% threshold — compare with the image\n5. licence number (business licence): \"BL-73739\" at 79% confidence, below the 90% threshold — compare with the image\n6. expiry date (business licence): not read — left blank, never filled in\n7. tax number (tax card): \"1645599627\" at 82% confidence, below the 90% threshold — compare with the image\n8. Name: national ID card (front) vs business licence: names differ (\"سمير حيدر علي الجبوري\" / \"ماجرواو مر\")\n… and 1 more.\nAsk for a new photo: national ID card (back): Glare on the document (bottom, left) may hide fields; tilt the phone slightly to remove the reflection."
+      },
+      {
+        "case": "tune-010",
+        "problem": "serial_mismatch",
+        "levels": [
+          "worst",
+          "clean",
+          "worst",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 5,
+        "problem_named": true,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 11 item(s):\n1. full name (national ID card (front)): \"جيدر فاضل جيدر الشمري\" at 77% confidence, below the 90% threshold — compare with the image\n2. date of birth (national ID card (back)): \"1988/05/19\" at 66% confidence, below the 90% threshold — compare with the image\n3. full name (business licence): not read — left blank, never filled in\n4. business name (business licence): \"شركة الواللحارة الاة\" at 79% confidence, below the 90% threshold — compare with the image\n5. licence number (business licence): not read — left blank, never filled in\n6. expiry date (business licence): not read — left blank, never filled in\n7. full name (tax card): \"حيدر فاضل حيدر الشمري\" at 82% confidence, below the 90% threshold — compare with the image\n8. tax number (tax card): not read — left blank, never filled in\n… and 3 more.\nAsk for a new photo: tax card: Glare on the document (center) may hide fields; tilt the phone slightly to remove the reflection."
+      },
+      {
+        "case": "tune-011",
+        "problem": null,
+        "levels": [
+          "poor",
+          "clean",
+          "worst",
+          "worst"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date",
+          "tax:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 6 item(s):\n1. required document missing: business licence\n2. full name (national ID card (front)): \"ماجد حسين حسين الجبوري\" at 78% confidence, below the 90% threshold — compare with the image\n3. expiry date (national ID card (back)): \"2033/11/24\" at 66% confidence, below the 90% threshold — compare with the image\n4. full name (tax card): \"ماجد\" at 82% confidence, below the 90% threshold — compare with the image\n5. tax number (tax card): not read — left blank, never filled in\n6. Name: national ID card (front) vs tax card: names differ (\"ماجد حسين حسين الجبوري\" / \"ماجد\")\nAsk for a new photo: tax card: Part of the document is outside the frame (bottom); retake with a margin around all four edges. | tax card: The photo is blurry; hold the phone steady and let it focus before capturing."
+      },
+      {
+        "case": "tune-012",
+        "problem": null,
+        "levels": [
+          "poor",
+          "worst",
+          "poor",
+          "clean"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "id_back:document_number",
+          "id_back:birth_date",
+          "id_back:expiry_date",
+          "license:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 6 item(s):\n1. required document missing: national ID card (back)\n2. full name (national ID card (front)): not read — left blank, never filled in\n3. full name (business licence): \"سرفافل خالر\" at 74% confidence, below the 90% threshold — compare with the image\n4. licence number (business licence): \"BL-33685\" at 79% confidence, below the 90% threshold — compare with the image\n5. expiry date (business licence): \"2027/03/01\" at 83% confidence, below the 90% threshold — compare with the image\n6. tax number (tax card): not read — left blank, never filled in"
+      },
+      {
+        "case": "tune-013",
+        "problem": null,
+        "levels": [
+          "poor",
+          "poor",
+          "worst",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date"
+        ],
+        "summary_en": "Needs human review — 9 item(s):\n1. full name (national ID card (front)): \"رقية خالد قاسم السامران\" at 65% confidence, below the 90% threshold (conflicting readings) — compare with the image\n2. date of birth (national ID card (back)): \"1999/11/21\" at 66% confidence, below the 90% threshold — compare with the image\n3. expiry date (national ID card (back)): \"2028/09/16\" at 66% confidence, below the 90% threshold — compare with the image\n4. full name (business licence): not read — left blank, never filled in\n5. business name (business licence): not read — left blank, never filled in\n6. licence number (business licence): not read — left blank, never filled in\n7. expiry date (business licence): not read — left blank, never filled in\n8. tax number (tax card): \"2025985496\" at 79% confidence, below the 90% threshold — compare with the image\n… and 1 more.\nAsk for a new photo: business licence: Part of the document is outside the frame (left); retake with a margin around all four edges."
+      },
+      {
+        "case": "tune-014",
+        "problem": null,
+        "levels": [
+          "worst",
+          "clean",
+          "poor",
+          "worst"
+        ],
+        "decision": "review",
+        "blocking_reasons": 4,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_front:name",
+          "id_front:national_number",
+          "id_front:document_number",
+          "license:name",
+          "license:business_name",
+          "license:expiry_date",
+          "tax:name",
+          "tax:tax_number"
+        ],
+        "summary_en": "Needs human review — 8 item(s):\n1. required document missing: national ID card (front)\n2. full name (business licence): not read — left blank, never filled in\n3. business name (business licence): \"شركة الواحة للمواد العدائية\" at 83% confidence, below the 90% threshold — compare with the image\n4. licence number (business licence): \"BL-91830\" at 79% confidence, below the 90% threshold — compare with the image\n5. expiry date (business licence): not read — left blank, never filled in\n6. full name (tax card): \"تادرية سعبر حسين الزسدي\" at 70% confidence, below the 90% threshold — compare with the image\n7. tax number (tax card): \"6248624581904\" at 70% confidence, below the 90% threshold — compare with the image\n8. Business name, licence vs tax card: values differ («شركة الواحة للمواد العدائية» / «شركة الواحة اللعواد العنائية»)\nAsk for a new photo: tax card: Glare on the document (bottom, right) may hide fields; tilt the phone slightly to remove the reflection."
+      },
+      {
+        "case": "tune-015",
+        "problem": null,
+        "levels": [
+          "poor",
+          "worst",
+          "worst",
+          "poor"
+        ],
+        "decision": "review",
+        "blocking_reasons": 3,
+        "problem_named": null,
+        "wrong_critical_fields": [
+          "id_back:document_number",
+          "id_back:birth_date",
+          "id_back:expiry_date",
+          "license:name",
+          "license:business_name",
+          "license:license_number",
+          "license:expiry_date"
+        ],
+        "summary_en": "Needs human review — 8 item(s):\n1. required document missing: national ID card (back)\n2. national number (national ID card (front)): \"265075201116\" at 83% confidence, below the 90% threshold — compare with the image\n3. card number (national ID card (front)): \"AP5766959\" at 83% confidence, below the 90% threshold — compare with the image\n4. full name (business licence): not read — left blank, never filled in\n5. business name (business licence): not read — left blank, never filled in\n6. licence number (business licence): not read — left blank, never filled in\n7. expiry date (business licence): not read — left blank, never filled in\n8. tax number (tax card): \"7691291419\" at 79% confidence, below the 90% threshold — compare with the image\nAsk for a new photo: national ID card (front): The photo is blurry; hold the phone steady and let it focus before capturing. | business licence: Glare on the document (bottom) may hide fields; tilt the phone slightly to remove the reflection."
+      }
+    ]
+  },
+  "seconds_per_image": 8.24,
+  "created": "2026-09-26"
+}

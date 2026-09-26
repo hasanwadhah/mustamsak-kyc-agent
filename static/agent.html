@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12675d">
+<title>Mustamsak · KYC Document Agent</title>
+<link rel="stylesheet" href="/static/agent.css">
+<script defer src="/static/agent-i18n.js"></script>
+<script defer src="/static/agent.js"></script>
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Mustamsak home">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 12V6h6M21 6h6v6M27 21v6h-6M11 27H5v-6M11 12h10M11 17h7M11 22h5"/></svg></span>
+    <span class="brand-text"><b data-t="brand">Mustamsak</b><small data-t="brandSub">KYC Document Agent</small></span>
+  </a>
+  <nav class="views" aria-label="Sections">
+    <button class="view-tab active" data-view="onboard" data-t="navOnboard">New customer file</button>
+    <button class="view-tab" data-view="how" data-t="navHow">How it works</button>
+    <button class="view-tab" data-view="eval" data-t="navEval">Evaluation</button>
+  </nav>
+  <div class="top-actions">
+    <span class="local-pill"><i class="dot"></i><span data-t="local">Runs on this computer</span></span>
+    <button class="ghost" id="langToggle" type="button" lang="ar">عربي</button>
+    <a class="ghost" href="/workspace" id="workspaceLink" data-t="workspace">Reviewer workspace</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============ Onboard ============ -->
+  <section class="view" id="view-onboard">
+    <ol class="stepper" aria-label="Progress">
+      <li class="current" data-step="upload"><span>1</span><b data-t="stepUpload">Capture & upload</b></li>
+      <li data-step="read"><span>2</span><b data-t="stepRead">Read & check</b></li>
+      <li data-step="decide"><span>3</span><b data-t="stepDecide">Decision</b></li>
+    </ol>
+
+    <div class="stage" id="stage-upload">
+      <div class="upload-layout">
+        <div class="panel">
+          <p class="eyebrow" data-t="eyebrow">Onboarding · ID · business licence · tax card</p>
+          <h1 data-t="uploadTitle">Drop the customer's documents</h1>
+          <p class="lead" data-t="uploadLead">All at once, in any order — even several documents in one photo. The agent finds each document, separates it, identifies it and puts the file in order.</p>
+          <label class="dropzone" id="dropzone">
+            <input type="file" id="fileInput" multiple accept="image/*,.pdf,application/pdf" hidden>
+            <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span>
+            <b data-t="dropMain">Drag photos or PDFs here</b>
+            <span class="btn primary" data-t="dropButton">Choose files</span>
+            <small data-t="dropHint">JPG, PNG or PDF · up to 20 files · checked for photo quality before reading</small>
+          </label>
+          <div id="precheck" class="precheck" hidden>
+            <h3 data-t="precheckTitle">Photo check before reading</h3>
+            <ul id="precheckList" class="file-list"></ul>
+            <div class="row gap">
+              <button class="btn primary" id="readFiles" type="button" data-t="readFiles">Read these documents</button>
+              <button class="btn" id="clearFiles" type="button" data-t="clearFiles">Choose other photos</button>
+            </div>
+          </div>
+          <div class="demo-block">
+            <div class="row between">
+              <h2 data-t="demoTitle">Or try a fictional demo file</h2>
+              <span class="tag" data-t="fictional">Fictional people · synthetic documents</span>
+            </div>
+            <div id="demos" class="demo-grid"><p class="muted" data-t="loading">Loading…</p></div>
+          </div>
+        </div>
+        <aside class="panel awareness" aria-labelledby="awareTitle">
+          <span class="aware-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z M9 12l2 2 4-5"/></svg></span>
+          <h2 id="awareTitle" data-t="awareTitle">Before you upload your documents</h2>
+          <ul class="tips" id="tips"></ul>
+          <div class="note">
+            <b data-t="privacyTitle">Your privacy</b>
+            <p data-t="privacyText">This agent runs on this computer; the photos are not sent anywhere. It reads and checks documents — it does not match faces, check liveness or detect forgery.</p>
+          </div>
+          <div class="note warn-note">
+            <b data-t="demoOnlyTitle">Hackathon build</b>
+            <p data-t="demoOnlyText">Use fictional sample documents only. Never upload a real identity document — yours or anyone else's.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="stage" id="stage-read" hidden>
+      <div class="panel reading">
+        <div class="spinner" aria-hidden="true"></div>
+        <div class="grow">
+          <h1 data-t="readingTitle">The agent is reading the file</h1>
+          <p class="lead" id="readingMessage" aria-live="polite"></p>
+          <progress id="readingProgress" max="100" value="0"></progress>
+          <ol class="agent-steps" id="agentSteps">
+            <li data-t="aStep1">Find and separate each document in every photo</li>
+            <li data-t="aStep2">Straighten, check photo quality, identify type and side</li>
+            <li data-t="aStep3">Read every field (Arabic, English, handwriting)</li>
+            <li data-t="aStep4">Validate dates and formats, compare documents</li>
+            <li data-t="aStep5">Score confidence and decide: pass or a person</li>
+          </ol>
+          <div class="found" id="foundDocs"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" id="stage-decide" hidden>
+      <div class="decision" id="decision"></div>
+      <div class="controls panel">
+        <label class="control"><span data-t="threshold">Confidence threshold</span>
+          <input type="range" id="threshold" min="0.5" max="0.99" step="0.01" value="0.9">
+          <output id="thresholdValue">90%</output></label>
+        <label class="control"><span data-t="profile">File type</span>
+          <select id="profile"><option value="auto" data-t="profileAuto">Detect automatically</option>
+            <option value="individual" data-t="profileIndividual">Individual (ID only)</option>
+            <option value="merchant" data-t="profileMerchant">Merchant (ID + licence + tax card)</option></select></label>
+        <p class="muted small" data-t="thresholdHelp">Any field below the threshold goes to a person. Confidence is calibrated: 90% means right about 90% of the time on held-out documents.</p>
+      </div>
+      <div class="result-layout">
+        <div class="result-main">
+          <section class="panel" id="reasonsPanel"><h2 data-t="reasonsTitle">What the reviewer must check</h2><ol id="reasons" class="reasons"></ol></section>
+          <section id="documents" class="documents" aria-label="Documents"></section>
+        </div>
+        <aside class="result-side">
+          <section class="panel"><h2 data-t="crossTitle">Cross-document checks</h2><div id="crossChecks"></div></section>
+          <section class="panel"><h2 data-t="reqTitle">Required documents</h2><ul id="requirements" class="reqs"></ul></section>
+          <section class="panel"><h2 data-t="summaryTitle">Note for the reviewer</h2><pre id="summary" class="summary"></pre>
+            <button class="btn small" id="copySummary" type="button" data-t="copy">Copy</button></section>
+          <section class="panel actions">
+            <button class="btn primary" id="printFile" type="button" data-t="print">Print the sorted file (PDF)</button>
+            <button class="btn" id="downloadReport" type="button" data-t="download">Download decision report (JSON)</button>
+            <a class="btn" id="openWorkspace" href="/workspace" data-t="openWorkspace">Open in reviewer workspace</a>
+            <button class="btn ghost-btn" id="newFile" type="button" data-t="newFile">Start a new file</button>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ How it works ============ -->
+  <section class="view" id="view-how" hidden>
+    <div class="panel">
+      <p class="eyebrow" data-t="howEyebrow">Reads the documents, checks them against each other, and knows when to hand over to a person</p>
+      <h1 data-t="howTitle">How the agent decides</h1>
+      <ol class="pipeline" id="pipeline"></ol>
+    </div>
+    <div class="two-col">
+      <div class="panel"><h2 data-t="rulesTitle">Rules it never breaks</h2><ul class="rules" id="rules"></ul></div>
+      <div class="panel"><h2 data-t="scopeTitle">Deliberately out of scope</h2><ul class="rules muted-list" id="scope"></ul>
+        <h2 class="mt" data-t="dataTitle">Data</h2><p data-t="dataText">Every document here is generated from templates with fictional names and numbers, then photographed badly on purpose: poor light, angles, glare, blur, a thumb over the text, cut-off corners.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ Evaluation ============ -->
+  <section class="view" id="view-eval" hidden>
+    <div class="panel">
+      <p class="eyebrow" data-t="evalEyebrow">Held-out documents the agent was never tuned on</p>
+      <h1 data-t="evalTitle">Evaluation</h1>
+      <p class="lead" id="evalLead"></p>
+      <div class="tiles" id="evalTiles"></div>
+    </div>
+    <div class="two-col">
+      <div class="panel"><h2 data-t="calTitle">Is the confidence honest?</h2><p class="muted small" data-t="calHelp">Each point: fields grouped by confidence. On the diagonal, "90%" really means right 90% of the time.</p><div id="reliability"></div></div>
+      <div class="panel"><h2 data-t="levelTitle">From clean photos to the worst</h2><div id="levels"></div></div>
+    </div>
+    <div class="panel"><h2 data-t="kindTitle">By document type</h2><div id="kinds"></div></div>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

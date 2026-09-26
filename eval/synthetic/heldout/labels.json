@@ -1,0 +1,1254 @@
+{
+  "split": "heldout",
+  "seed": 907,
+  "reference_day": "2026-09-23",
+  "fictional": true,
+  "items": [
+    {
+      "file": "case000_id_front.jpg",
+      "case": "heldout-000",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "dark",
+        "glare",
+        "occlusion",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "عباس",
+        "father_name": "احمد",
+        "grandfather_name": "سعد",
+        "surname": "الكعبي",
+        "mother_name": "آمنة",
+        "sex": "ذكر",
+        "national_number": "208471713363",
+        "document_number": "PV2374475",
+        "name": "عباس احمد سعد الكعبي"
+      }
+    },
+    {
+      "file": "case000_id_back.jpg",
+      "case": "heldout-000",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "PV2374475",
+        "birth_date": "1978/10/17",
+        "issue_date": "2025/09/13",
+        "expiry_date": "2035/09/13",
+        "birth_place": "الناصرية"
+      }
+    },
+    {
+      "file": "case000_license.jpg",
+      "case": "heldout-000",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "عباس احمد سعد",
+        "business_name": "معرض السلام للسيارات",
+        "license_number": "BL-29272",
+        "activity": "بيع مواد غذائية",
+        "issue_date": "2024/03/14",
+        "expiry_date": "2027/03/14"
+      }
+    },
+    {
+      "file": "case000_tax.jpg",
+      "case": "heldout-000",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "عباس احمد سعد الكعبي",
+        "business_name": "معرض السلام للسيارات",
+        "tax_number": "9254158565",
+        "issue_date": "2025/12/12",
+        "expiry_date": "2027/12/12"
+      }
+    },
+    {
+      "file": "case001_id_front.jpg",
+      "case": "heldout-001",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "حسن",
+        "father_name": "حسن",
+        "grandfather_name": "احمد",
+        "surname": "التميمي",
+        "mother_name": "زينب",
+        "sex": "ذكر",
+        "national_number": "247756133696",
+        "document_number": "DH7864662",
+        "name": "حسن حسن احمد التميمي"
+      }
+    },
+    {
+      "file": "case001_id_back.jpg",
+      "case": "heldout-001",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "DH7864662",
+        "birth_date": "2003/06/18",
+        "issue_date": "2024/07/21",
+        "expiry_date": "2034/07/21",
+        "birth_place": "بغداد"
+      }
+    },
+    {
+      "file": "case001_license.jpg",
+      "case": "heldout-001",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "حسن حسن احمد",
+        "business_name": "مكتب الرافدين للخدمات",
+        "license_number": "BL-61122",
+        "activity": "تطوير برمجيات",
+        "issue_date": "2025/05/30",
+        "expiry_date": "2028/05/29"
+      }
+    },
+    {
+      "file": "case001_tax.jpg",
+      "case": "heldout-001",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "حسن حسن احمد التميمي",
+        "business_name": "مكتب الرافدين للخدمات",
+        "tax_number": "7299022440",
+        "issue_date": "2026/01/17",
+        "expiry_date": "2028/01/17"
+      }
+    },
+    {
+      "file": "case002_id_front.jpg",
+      "case": "heldout-002",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "first_name": "هدى",
+        "father_name": "مصطفى",
+        "grandfather_name": "وليد",
+        "surname": "التميمي",
+        "mother_name": "سعاد",
+        "sex": "أنثى",
+        "national_number": "128175085501",
+        "document_number": "GL9032758",
+        "name": "هدى مصطفى وليد التميمي"
+      }
+    },
+    {
+      "file": "case002_id_back.jpg",
+      "case": "heldout-002",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "document_number": "GL9032758",
+        "birth_date": "1991/01/28",
+        "issue_date": "2025/03/14",
+        "expiry_date": "2035/03/14",
+        "birth_place": "بغداد"
+      }
+    },
+    {
+      "file": "case002_license.jpg",
+      "case": "heldout-002",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "رنا احمد عباس",
+        "business_name": "معرض السلام للسيارات",
+        "license_number": "BL-56095",
+        "activity": "بيع مواد غذائية",
+        "issue_date": "2024/06/24",
+        "expiry_date": "2027/06/24"
+      }
+    },
+    {
+      "file": "case002_tax.jpg",
+      "case": "heldout-002",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "هدى مصطفى وليد التميمي",
+        "business_name": "معرض السلام للسيارات",
+        "tax_number": "2456917142",
+        "issue_date": "2026/03/30",
+        "expiry_date": "2028/03/29"
+      }
+    },
+    {
+      "file": "case003_id_front.jpg",
+      "case": "heldout-003",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "first_name": "نبيل",
+        "father_name": "احمد",
+        "grandfather_name": "طارق",
+        "surname": "العبيدي",
+        "mother_name": "سعاد",
+        "sex": "ذكر",
+        "national_number": "269942815764",
+        "document_number": "EM5400693",
+        "name": "نبيل احمد طارق العبيدي"
+      }
+    },
+    {
+      "file": "case003_id_back.jpg",
+      "case": "heldout-003",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "document_number": "VY5421663",
+        "birth_date": "1995/12/07",
+        "issue_date": "2020/02/02",
+        "expiry_date": "2030/02/02",
+        "birth_place": "الحلة"
+      }
+    },
+    {
+      "file": "case003_license.jpg",
+      "case": "heldout-003",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "نبيل احمد طارق",
+        "business_name": "شركة الضياء للطاقة",
+        "license_number": "BL-71734",
+        "activity": "تجارة عامة",
+        "issue_date": "2025/01/21",
+        "expiry_date": "2028/01/21"
+      }
+    },
+    {
+      "file": "case003_tax.jpg",
+      "case": "heldout-003",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "نبيل احمد طارق العبيدي",
+        "business_name": "شركة الضياء للطاقة",
+        "tax_number": "2838637580",
+        "issue_date": "2025/03/25",
+        "expiry_date": "2027/03/25"
+      }
+    },
+    {
+      "file": "case004_id_front.jpg",
+      "case": "heldout-004",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "first_name": "سعد",
+        "father_name": "سالم",
+        "grandfather_name": "عباس",
+        "surname": "التميمي",
+        "mother_name": "آمنة",
+        "sex": "ذكر",
+        "national_number": "181263723548",
+        "document_number": "WA9208513",
+        "name": "سعد سالم عباس التميمي"
+      }
+    },
+    {
+      "file": "case004_id_back.jpg",
+      "case": "heldout-004",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "dim",
+        "glare"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "document_number": "WA9208513",
+        "birth_date": "1963/01/27",
+        "issue_date": "2020/10/21",
+        "expiry_date": "2030/10/21",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case004_license.jpg",
+      "case": "heldout-004",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "عباس احمد جاسم",
+        "business_name": "مكتب الرافدين للخدمات",
+        "license_number": "BL-18402",
+        "activity": "صيدلة",
+        "issue_date": "2024/07/07",
+        "expiry_date": "2027/07/07"
+      }
+    },
+    {
+      "file": "case004_tax.jpg",
+      "case": "heldout-004",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "سعد سالم عباس التميمي",
+        "business_name": "مكتب الرافدين للخدمات",
+        "tax_number": "7631309682",
+        "issue_date": "2025/05/05",
+        "expiry_date": "2027/05/05"
+      }
+    },
+    {
+      "file": "case005_id_front.jpg",
+      "case": "heldout-005",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "first_name": "رنا",
+        "father_name": "رائد",
+        "grandfather_name": "عباس",
+        "surname": "العبيدي",
+        "mother_name": "آمنة",
+        "sex": "أنثى",
+        "national_number": "210871163924",
+        "document_number": "RG2988490",
+        "name": "رنا رائد عباس العبيدي"
+      }
+    },
+    {
+      "file": "case005_id_back.jpg",
+      "case": "heldout-005",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "document_number": "WJ4791932",
+        "birth_date": "1987/11/27",
+        "issue_date": "2024/04/08",
+        "expiry_date": "2034/04/08",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case005_license.jpg",
+      "case": "heldout-005",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "رنا رائد عباس",
+        "business_name": "مكتب الرافدين للخدمات",
+        "license_number": "BL-33007",
+        "activity": "تجارة عامة",
+        "issue_date": "2025/05/20",
+        "expiry_date": "2028/05/19"
+      }
+    },
+    {
+      "file": "case005_tax.jpg",
+      "case": "heldout-005",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "رنا رائد عباس العبيدي",
+        "business_name": "مكتب الرافدين للخدمات",
+        "tax_number": "2001500294",
+        "issue_date": "2025/09/23",
+        "expiry_date": "2027/09/23"
+      }
+    },
+    {
+      "file": "case006_id_front.jpg",
+      "case": "heldout-006",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "رنا",
+        "father_name": "احمد",
+        "grandfather_name": "رائد",
+        "surname": "الدليمي",
+        "mother_name": "هدى",
+        "sex": "أنثى",
+        "national_number": "210078240502",
+        "document_number": "KY2484242",
+        "name": "رنا احمد رائد الدليمي"
+      }
+    },
+    {
+      "file": "case006_id_back.jpg",
+      "case": "heldout-006",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "KY2484242",
+        "birth_date": "1993/12/20",
+        "issue_date": "2025/12/23",
+        "expiry_date": "2035/12/23",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case006_license.jpg",
+      "case": "heldout-006",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "رنا احمد رائد",
+        "business_name": "متجر الفرات للأجهزة",
+        "license_number": "BL-81682",
+        "activity": "مقاولات إنشائية",
+        "issue_date": "2024/11/08",
+        "expiry_date": "2027/11/08"
+      }
+    },
+    {
+      "file": "case006_tax.jpg",
+      "case": "heldout-006",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "رنا احمد رائد الدليمي",
+        "business_name": "متجر الفرات للأجهزة",
+        "tax_number": "1238944023",
+        "issue_date": "2025/08/11",
+        "expiry_date": "2027/08/11"
+      }
+    },
+    {
+      "file": "case007_id_front.jpg",
+      "case": "heldout-007",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "first_name": "آمنة",
+        "father_name": "نبيل",
+        "grandfather_name": "عباس",
+        "surname": "البياتي",
+        "mother_name": "زينب",
+        "sex": "أنثى",
+        "national_number": "177515876052",
+        "document_number": "PT1288515",
+        "name": "آمنة نبيل عباس البياتي"
+      }
+    },
+    {
+      "file": "case007_id_back.jpg",
+      "case": "heldout-007",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "PT1288515",
+        "birth_date": "1975/03/03",
+        "issue_date": "2022/03/23",
+        "expiry_date": "2032/03/23",
+        "birth_place": "الحلة"
+      }
+    },
+    {
+      "file": "case007_license.jpg",
+      "case": "heldout-007",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "آمنة نبيل عباس",
+        "business_name": "مخبز الربيع الحديث",
+        "license_number": "BL-16105",
+        "activity": "تجارة عامة",
+        "issue_date": "2024/06/22",
+        "expiry_date": "2027/06/22"
+      }
+    },
+    {
+      "file": "case007_tax.jpg",
+      "case": "heldout-007",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "dark",
+        "glare",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "آمنة نبيل عباس البياتي",
+        "business_name": "مخبز الربيع الحديث",
+        "tax_number": "8144961525",
+        "issue_date": "2025/10/28",
+        "expiry_date": "2027/10/28"
+      }
+    },
+    {
+      "file": "case008_id_front.jpg",
+      "case": "heldout-008",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "first_name": "سعد",
+        "father_name": "عباس",
+        "grandfather_name": "عباس",
+        "surname": "العبيدي",
+        "mother_name": "سعاد",
+        "sex": "ذكر",
+        "national_number": "113390413010",
+        "document_number": "AZ3243225",
+        "name": "سعد عباس عباس العبيدي"
+      }
+    },
+    {
+      "file": "case008_id_back.jpg",
+      "case": "heldout-008",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "worst",
+      "degradations": [
+        "cut_off_bottom",
+        "angle",
+        "glare",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "document_number": "AZ3243225",
+        "birth_date": "1974/12/15",
+        "issue_date": "2025/09/06",
+        "expiry_date": "2035/09/06",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case008_license.jpg",
+      "case": "heldout-008",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "سعد عباس عباس",
+        "business_name": "مخبز الربيع الحديث",
+        "license_number": "BL-98488",
+        "activity": "تجارة سيارات",
+        "issue_date": "2020/01/20",
+        "expiry_date": "2023/01/19"
+      }
+    },
+    {
+      "file": "case008_tax.jpg",
+      "case": "heldout-008",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "motion_blur"
+      ],
+      "case_problem": "expired_license",
+      "fields": {
+        "name": "سعد عباس عباس العبيدي",
+        "business_name": "مخبز الربيع الحديث",
+        "tax_number": "9432456240",
+        "issue_date": "2026/05/15",
+        "expiry_date": "2028/05/14"
+      }
+    },
+    {
+      "file": "case009_id_front.jpg",
+      "case": "heldout-009",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "نبيل",
+        "father_name": "وليد",
+        "grandfather_name": "وليد",
+        "surname": "الطائي",
+        "mother_name": "سعاد",
+        "sex": "ذكر",
+        "national_number": "148656990703",
+        "document_number": "PG5586243",
+        "name": "نبيل وليد وليد الطائي"
+      }
+    },
+    {
+      "file": "case009_id_back.jpg",
+      "case": "heldout-009",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "PG5586243",
+        "birth_date": "1963/11/04",
+        "issue_date": "2018/11/08",
+        "expiry_date": "2028/11/08",
+        "birth_place": "كربلاء"
+      }
+    },
+    {
+      "file": "case009_license.jpg",
+      "case": "heldout-009",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "نبيل وليد وليد",
+        "business_name": "شركة الضياء للطاقة",
+        "license_number": "BL-26487",
+        "activity": "خدمات مكتبية",
+        "issue_date": "2025/11/21",
+        "expiry_date": "2028/11/20"
+      }
+    },
+    {
+      "file": "case009_tax.jpg",
+      "case": "heldout-009",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "name": "نبيل وليد وليد الطائي",
+        "business_name": "شركة الضياء للطاقة",
+        "tax_number": "0541294912",
+        "issue_date": "2026/03/03",
+        "expiry_date": "2028/03/02"
+      }
+    },
+    {
+      "file": "case010_id_front.jpg",
+      "case": "heldout-010",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "motion_blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "طارق",
+        "father_name": "مصطفى",
+        "grandfather_name": "نبيل",
+        "surname": "الخفاجي",
+        "mother_name": "زينب",
+        "sex": "ذكر",
+        "national_number": "248691014010",
+        "document_number": "ST0805433",
+        "name": "طارق مصطفى نبيل الخفاجي"
+      }
+    },
+    {
+      "file": "case010_id_back.jpg",
+      "case": "heldout-010",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "ST0805433",
+        "birth_date": "2000/03/23",
+        "issue_date": "2018/12/07",
+        "expiry_date": "2028/12/07",
+        "birth_place": "الكوت"
+      }
+    },
+    {
+      "file": "case010_license.jpg",
+      "case": "heldout-010",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "طارق مصطفى نبيل",
+        "business_name": "مخبز الربيع الحديث",
+        "license_number": "BL-21018",
+        "activity": "صيدلة",
+        "issue_date": "2025/04/01",
+        "expiry_date": "2028/03/31"
+      }
+    },
+    {
+      "file": "case010_tax.jpg",
+      "case": "heldout-010",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "طارق مصطفى نبيل الخفاجي",
+        "business_name": "مخبز الربيع الحديث",
+        "tax_number": "9931301278",
+        "issue_date": "2025/04/16",
+        "expiry_date": "2027/04/16"
+      }
+    },
+    {
+      "file": "case011_id_front.jpg",
+      "case": "heldout-011",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "occlusion",
+        "blur"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "first_name": "زينب",
+        "father_name": "مصطفى",
+        "grandfather_name": "عباس",
+        "surname": "التميمي",
+        "mother_name": "نور",
+        "sex": "أنثى",
+        "national_number": "209846673213",
+        "document_number": "CE7941055",
+        "name": "زينب مصطفى عباس التميمي"
+      }
+    },
+    {
+      "file": "case011_id_back.jpg",
+      "case": "heldout-011",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "document_number": "EZ2081339",
+        "birth_date": "1968/03/03",
+        "issue_date": "2018/04/04",
+        "expiry_date": "2028/04/04",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case011_license.jpg",
+      "case": "heldout-011",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "زينب مصطفى عباس",
+        "business_name": "مخبز الربيع الحديث",
+        "license_number": "BL-31558",
+        "activity": "تجارة سيارات",
+        "issue_date": "2024/08/27",
+        "expiry_date": "2027/08/27"
+      }
+    },
+    {
+      "file": "case011_tax.jpg",
+      "case": "heldout-011",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "زينب مصطفى عباس التميمي",
+        "business_name": "مخبز الربيع الحديث",
+        "tax_number": "7914084648",
+        "issue_date": "2025/08/28",
+        "expiry_date": "2027/08/28"
+      }
+    },
+    {
+      "file": "case012_id_front.jpg",
+      "case": "heldout-012",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "first_name": "سعد",
+        "father_name": "احمد",
+        "grandfather_name": "سعد",
+        "surname": "العبيدي",
+        "mother_name": "زينب",
+        "sex": "ذكر",
+        "national_number": "294782590821",
+        "document_number": "EX0446220",
+        "name": "سعد احمد سعد العبيدي"
+      }
+    },
+    {
+      "file": "case012_id_back.jpg",
+      "case": "heldout-012",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "document_number": "HD5385777",
+        "birth_date": "1980/07/07",
+        "issue_date": "2021/08/01",
+        "expiry_date": "2031/08/01",
+        "birth_place": "بغداد"
+      }
+    },
+    {
+      "file": "case012_license.jpg",
+      "case": "heldout-012",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [
+        "dim"
+      ],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "سعد احمد سعد",
+        "business_name": "شركة الضياء للطاقة",
+        "license_number": "BL-96965",
+        "activity": "تجارة سيارات",
+        "issue_date": "2024/02/20",
+        "expiry_date": "2027/02/19"
+      }
+    },
+    {
+      "file": "case012_tax.jpg",
+      "case": "heldout-012",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "serial_mismatch",
+      "fields": {
+        "name": "سعد احمد سعد العبيدي",
+        "business_name": "شركة الضياء للطاقة",
+        "tax_number": "5172013195",
+        "issue_date": "2026/01/10",
+        "expiry_date": "2028/01/10"
+      }
+    },
+    {
+      "file": "case013_id_front.jpg",
+      "case": "heldout-013",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "سعد",
+        "father_name": "سالم",
+        "grandfather_name": "عباس",
+        "surname": "العبيدي",
+        "mother_name": "سعاد",
+        "sex": "ذكر",
+        "national_number": "102734365498",
+        "document_number": "XA3206597",
+        "name": "سعد سالم عباس العبيدي"
+      }
+    },
+    {
+      "file": "case013_id_back.jpg",
+      "case": "heldout-013",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "document_number": "XA3206597",
+        "birth_date": "1976/12/15",
+        "issue_date": "2024/07/12",
+        "expiry_date": "2034/07/12",
+        "birth_place": "النجف"
+      }
+    },
+    {
+      "file": "case013_license.jpg",
+      "case": "heldout-013",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "سعد سالم عباس",
+        "business_name": "مخبز الربيع الحديث",
+        "license_number": "BL-87844",
+        "activity": "نقل بضائع",
+        "issue_date": "2025/10/21",
+        "expiry_date": "2028/10/20"
+      }
+    },
+    {
+      "file": "case013_tax.jpg",
+      "case": "heldout-013",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "سعد سالم عباس العبيدي",
+        "business_name": "مخبز الربيع الحديث",
+        "tax_number": "5227673231",
+        "issue_date": "2025/09/19",
+        "expiry_date": "2027/09/19"
+      }
+    },
+    {
+      "file": "case014_id_front.jpg",
+      "case": "heldout-014",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "first_name": "طارق",
+        "father_name": "نبيل",
+        "grandfather_name": "سعد",
+        "surname": "الكعبي",
+        "mother_name": "زينب",
+        "sex": "ذكر",
+        "national_number": "124061279763",
+        "document_number": "RY0541093",
+        "name": "طارق نبيل سعد الكعبي"
+      }
+    },
+    {
+      "file": "case014_id_back.jpg",
+      "case": "heldout-014",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "document_number": "RY0541093",
+        "birth_date": "1973/02/15",
+        "issue_date": "2017/02/22",
+        "expiry_date": "2027/02/22",
+        "birth_place": "الحلة"
+      }
+    },
+    {
+      "file": "case014_license.jpg",
+      "case": "heldout-014",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "poor",
+      "degradations": [],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "رنا طارق عمر",
+        "business_name": "معرض السلام للسيارات",
+        "license_number": "BL-26820",
+        "activity": "صيدلة",
+        "issue_date": "2023/10/05",
+        "expiry_date": "2026/10/04"
+      }
+    },
+    {
+      "file": "case014_tax.jpg",
+      "case": "heldout-014",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "motion_blur"
+      ],
+      "case_problem": "name_mismatch",
+      "fields": {
+        "name": "طارق نبيل سعد الكعبي",
+        "business_name": "معرض السلام للسيارات",
+        "tax_number": "0085460950",
+        "issue_date": "2026/03/23",
+        "expiry_date": "2028/03/22"
+      }
+    },
+    {
+      "file": "case015_id_front.jpg",
+      "case": "heldout-015",
+      "document": "id_front",
+      "kind": "national_id",
+      "side": "front",
+      "level": "worst",
+      "degradations": [
+        "angle",
+        "glare",
+        "blur"
+      ],
+      "case_problem": null,
+      "fields": {
+        "first_name": "حسن",
+        "father_name": "سالم",
+        "grandfather_name": "سالم",
+        "surname": "الحديثي",
+        "mother_name": "زينب",
+        "sex": "ذكر",
+        "national_number": "186069673202",
+        "document_number": "WN4996130",
+        "name": "حسن سالم سالم الحديثي"
+      }
+    },
+    {
+      "file": "case015_id_back.jpg",
+      "case": "heldout-015",
+      "document": "id_back",
+      "kind": "national_id",
+      "side": "back",
+      "level": "poor",
+      "degradations": [
+        "glare"
+      ],
+      "case_problem": null,
+      "fields": {
+        "document_number": "WN4996130",
+        "birth_date": "1978/12/21",
+        "issue_date": "2018/07/18",
+        "expiry_date": "2028/07/18",
+        "birth_place": "الموصل"
+      }
+    },
+    {
+      "file": "case015_license.jpg",
+      "case": "heldout-015",
+      "document": "license",
+      "kind": "business_license",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "حسن سالم سالم",
+        "business_name": "معرض السلام للسيارات",
+        "license_number": "BL-39978",
+        "activity": "بيع مواد غذائية",
+        "issue_date": "2024/10/22",
+        "expiry_date": "2027/10/22"
+      }
+    },
+    {
+      "file": "case015_tax.jpg",
+      "case": "heldout-015",
+      "document": "tax",
+      "kind": "tax_card",
+      "side": "page",
+      "level": "clean",
+      "degradations": [],
+      "case_problem": null,
+      "fields": {
+        "name": "حسن سالم سالم الحديثي",
+        "business_name": "معرض السلام للسيارات",
+        "tax_number": "6564022917",
+        "issue_date": "2026/05/08",
+        "expiry_date": "2028/05/07"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+# What you upload while using the app stays on this computer
+data/
+output/
+tmp/
+*.log
+.env
+# Downloaded by setup.ps1 (public OCR models)
+models/ppocr/
+models/easyocr/
+research/downloads/
+research/*.pt
+eval/results/

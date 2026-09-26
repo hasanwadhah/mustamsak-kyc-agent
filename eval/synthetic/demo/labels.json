@@ -1,0 +1,718 @@
+{
+ "split": "demo",
+ "seed": 4242,
+ "reference_day": "2026-09-23",
+ "fictional": true,
+ "items": [
+  {
+   "file": "case000_id_front.jpg",
+   "case": "demo-000",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": "expired_license",
+   "fields": {
+    "first_name": "رائد",
+    "father_name": "طارق",
+    "grandfather_name": "حسن",
+    "surname": "العبيدي",
+    "mother_name": "سعاد",
+    "sex": "ذكر",
+    "national_number": "145775650689",
+    "document_number": "WH0113929",
+    "name": "رائد طارق حسن العبيدي"
+   }
+  },
+  {
+   "file": "case000_id_back.jpg",
+   "case": "demo-000",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": "expired_license",
+   "fields": {
+    "document_number": "WH0113929",
+    "birth_date": "1984/10/29",
+    "issue_date": "2025/05/31",
+    "expiry_date": "2035/05/31",
+    "birth_place": "البصرة"
+   }
+  },
+  {
+   "file": "case000_license.jpg",
+   "case": "demo-000",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": "expired_license",
+   "fields": {
+    "name": "رائد طارق حسن",
+    "business_name": "مكتب الرافدين للخدمات",
+    "license_number": "BL-12321",
+    "activity": "تجارة عامة",
+    "issue_date": "2019/04/18",
+    "expiry_date": "2022/04/17"
+   }
+  },
+  {
+   "file": "case000_tax.jpg",
+   "case": "demo-000",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": "expired_license",
+   "fields": {
+    "name": "رائد طارق حسن العبيدي",
+    "business_name": "مكتب الرافدين للخدمات",
+    "tax_number": "1071802221",
+    "issue_date": "2025/11/29",
+    "expiry_date": "2027/11/29"
+   }
+  },
+  {
+   "file": "case001_id_front.jpg",
+   "case": "demo-001",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "first_name": "عمر",
+    "father_name": "عمر",
+    "grandfather_name": "نبيل",
+    "surname": "البياتي",
+    "mother_name": "زينب",
+    "sex": "ذكر",
+    "national_number": "190205166803",
+    "document_number": "KJ1205152",
+    "name": "عمر عمر نبيل البياتي"
+   }
+  },
+  {
+   "file": "case001_id_back.jpg",
+   "case": "demo-001",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "document_number": "KJ1205152",
+    "birth_date": "1969/07/08",
+    "issue_date": "2017/01/21",
+    "expiry_date": "2027/01/21",
+    "birth_place": "الديوانية"
+   }
+  },
+  {
+   "file": "case001_license.jpg",
+   "case": "demo-001",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "dark",
+    "occlusion",
+    "motion_blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "name": "عمر عمر نبيل",
+    "business_name": "مكتب الرافدين للخدمات",
+    "license_number": "BL-31859",
+    "activity": "خدمات مكتبية",
+    "issue_date": "2025/10/08",
+    "expiry_date": "2028/10/07"
+   }
+  },
+  {
+   "file": "case001_tax.jpg",
+   "case": "demo-001",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "عمر عمر نبيل البياتي",
+    "business_name": "مكتب الرافدين للخدمات",
+    "tax_number": "1617306204",
+    "issue_date": "2026/03/19",
+    "expiry_date": "2028/03/18"
+   }
+  },
+  {
+   "file": "case002_id_front.jpg",
+   "case": "demo-002",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "first_name": "مصطفى",
+    "father_name": "عباس",
+    "grandfather_name": "رائد",
+    "surname": "الخفاجي",
+    "mother_name": "هدى",
+    "sex": "ذكر",
+    "national_number": "267617732819",
+    "document_number": "XB4036334",
+    "name": "مصطفى عباس رائد الخفاجي"
+   }
+  },
+  {
+   "file": "case002_id_back.jpg",
+   "case": "demo-002",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "glare",
+    "occlusion",
+    "blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "document_number": "XB4036334",
+    "birth_date": "1976/03/20",
+    "issue_date": "2024/05/16",
+    "expiry_date": "2034/05/16",
+    "birth_place": "السماوة"
+   }
+  },
+  {
+   "file": "case002_license.jpg",
+   "case": "demo-002",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "مصطفى عباس رائد",
+    "business_name": "متجر الفرات للأجهزة",
+    "license_number": "BL-99120",
+    "activity": "تجارة سيارات",
+    "issue_date": "2024/08/10",
+    "expiry_date": "2027/08/10"
+   }
+  },
+  {
+   "file": "case002_tax.jpg",
+   "case": "demo-002",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "مصطفى عباس رائد الخفاجي",
+    "business_name": "متجر الفرات للأجهزة",
+    "tax_number": "1826161028",
+    "issue_date": "2026/01/07",
+    "expiry_date": "2028/01/07"
+   }
+  },
+  {
+   "file": "case003_id_front.jpg",
+   "case": "demo-003",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "first_name": "زينب",
+    "father_name": "عمر",
+    "grandfather_name": "جاسم",
+    "surname": "البياتي",
+    "mother_name": "هدى",
+    "sex": "أنثى",
+    "national_number": "284725956790",
+    "document_number": "AV9293334",
+    "name": "زينب عمر جاسم البياتي"
+   }
+  },
+  {
+   "file": "case003_id_back.jpg",
+   "case": "demo-003",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "glare",
+    "motion_blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "document_number": "AV9293334",
+    "birth_date": "2000/06/24",
+    "issue_date": "2019/04/25",
+    "expiry_date": "2029/04/25",
+    "birth_place": "البصرة"
+   }
+  },
+  {
+   "file": "case003_license.jpg",
+   "case": "demo-003",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "poor",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "زينب عمر جاسم",
+    "business_name": "مكتب الأمل للسفر",
+    "license_number": "BL-97061",
+    "activity": "تطوير برمجيات",
+    "issue_date": "2025/09/28",
+    "expiry_date": "2028/09/27"
+   }
+  },
+  {
+   "file": "case003_tax.jpg",
+   "case": "demo-003",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "زينب عمر جاسم البياتي",
+    "business_name": "مكتب الأمل للسفر",
+    "tax_number": "8388929001",
+    "issue_date": "2025/06/10",
+    "expiry_date": "2027/06/10"
+   }
+  },
+  {
+   "file": "case004_id_front.jpg",
+   "case": "demo-004",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "poor",
+   "degradations": [
+    "dim"
+   ],
+   "case_problem": null,
+   "fields": {
+    "first_name": "زينب",
+    "father_name": "رائد",
+    "grandfather_name": "مصطفى",
+    "surname": "الطائي",
+    "mother_name": "هدى",
+    "sex": "أنثى",
+    "national_number": "245496917391",
+    "document_number": "LN2522413",
+    "name": "زينب رائد مصطفى الطائي"
+   }
+  },
+  {
+   "file": "case004_id_back.jpg",
+   "case": "demo-004",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "poor",
+   "degradations": [
+    "dim"
+   ],
+   "case_problem": null,
+   "fields": {
+    "document_number": "LN2522413",
+    "birth_date": "1979/08/20",
+    "issue_date": "2019/05/03",
+    "expiry_date": "2029/05/03",
+    "birth_place": "الناصرية"
+   }
+  },
+  {
+   "file": "case004_license.jpg",
+   "case": "demo-004",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "poor",
+   "degradations": [
+    "dim"
+   ],
+   "case_problem": null,
+   "fields": {
+    "name": "زينب رائد مصطفى",
+    "business_name": "معرض السلام للسيارات",
+    "license_number": "BL-12130",
+    "activity": "خدمات سفر وسياحة",
+    "issue_date": "2024/11/13",
+    "expiry_date": "2027/11/13"
+   }
+  },
+  {
+   "file": "case004_tax.jpg",
+   "case": "demo-004",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "زينب رائد مصطفى الطائي",
+    "business_name": "معرض السلام للسيارات",
+    "tax_number": "0997234249",
+    "issue_date": "2025/04/12",
+    "expiry_date": "2027/04/12"
+   }
+  },
+  {
+   "file": "case005_id_front.jpg",
+   "case": "demo-005",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "poor",
+   "degradations": [
+    "glare"
+   ],
+   "case_problem": "serial_mismatch",
+   "fields": {
+    "first_name": "سعاد",
+    "father_name": "مصطفى",
+    "grandfather_name": "عباس",
+    "surname": "الكعبي",
+    "mother_name": "زينب",
+    "sex": "أنثى",
+    "national_number": "191517068366",
+    "document_number": "HM6515026",
+    "name": "سعاد مصطفى عباس الكعبي"
+   }
+  },
+  {
+   "file": "case005_id_back.jpg",
+   "case": "demo-005",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": "serial_mismatch",
+   "fields": {
+    "document_number": "BS8317799",
+    "birth_date": "1964/04/04",
+    "issue_date": "2017/09/16",
+    "expiry_date": "2027/09/16",
+    "birth_place": "الكوت"
+   }
+  },
+  {
+   "file": "case005_license.jpg",
+   "case": "demo-005",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": "serial_mismatch",
+   "fields": {
+    "name": "سعاد مصطفى عباس",
+    "business_name": "شركة الضياء للطاقة",
+    "license_number": "BL-87233",
+    "activity": "تجارة عامة",
+    "issue_date": "2024/11/10",
+    "expiry_date": "2027/11/10"
+   }
+  },
+  {
+   "file": "case005_tax.jpg",
+   "case": "demo-005",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "poor",
+   "degradations": [
+    "dim",
+    "glare"
+   ],
+   "case_problem": "serial_mismatch",
+   "fields": {
+    "name": "سعاد مصطفى عباس الكعبي",
+    "business_name": "شركة الضياء للطاقة",
+    "tax_number": "8312817682",
+    "issue_date": "2025/09/06",
+    "expiry_date": "2027/09/06"
+   }
+  },
+  {
+   "file": "case006_id_front.jpg",
+   "case": "demo-006",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "dark",
+    "blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "first_name": "احمد",
+    "father_name": "احمد",
+    "grandfather_name": "سعد",
+    "surname": "الطائي",
+    "mother_name": "آمنة",
+    "sex": "ذكر",
+    "national_number": "142344890647",
+    "document_number": "DC5724185",
+    "name": "احمد احمد سعد الطائي"
+   }
+  },
+  {
+   "file": "case006_id_back.jpg",
+   "case": "demo-006",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "document_number": "DC5724185",
+    "birth_date": "1984/12/16",
+    "issue_date": "2018/10/07",
+    "expiry_date": "2028/10/07",
+    "birth_place": "البصرة"
+   }
+  },
+  {
+   "file": "case006_license.jpg",
+   "case": "demo-006",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "name": "احمد احمد سعد",
+    "business_name": "معرض السلام للسيارات",
+    "license_number": "BL-80924",
+    "activity": "خدمات مكتبية",
+    "issue_date": "2024/08/27",
+    "expiry_date": "2027/08/27"
+   }
+  },
+  {
+   "file": "case006_tax.jpg",
+   "case": "demo-006",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "glare",
+    "motion_blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "name": "احمد احمد سعد الطائي",
+    "business_name": "معرض السلام للسيارات",
+    "tax_number": "2818079140",
+    "issue_date": "2025/09/19",
+    "expiry_date": "2027/09/19"
+   }
+  },
+  {
+   "file": "case007_id_front.jpg",
+   "case": "demo-007",
+   "document": "id_front",
+   "kind": "national_id",
+   "side": "front",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "dark",
+    "blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "first_name": "رنا",
+    "father_name": "جاسم",
+    "grandfather_name": "احمد",
+    "surname": "الطائي",
+    "mother_name": "رنا",
+    "sex": "أنثى",
+    "national_number": "134835044386",
+    "document_number": "GA3453921",
+    "name": "رنا جاسم احمد الطائي"
+   }
+  },
+  {
+   "file": "case007_id_back.jpg",
+   "case": "demo-007",
+   "document": "id_back",
+   "kind": "national_id",
+   "side": "back",
+   "level": "clean",
+   "degradations": [],
+   "case_problem": null,
+   "fields": {
+    "document_number": "GA3453921",
+    "birth_date": "1986/10/22",
+    "issue_date": "2020/07/24",
+    "expiry_date": "2030/07/24",
+    "birth_place": "البصرة"
+   }
+  },
+  {
+   "file": "case007_license.jpg",
+   "case": "demo-007",
+   "document": "license",
+   "kind": "business_license",
+   "side": "page",
+   "level": "worst",
+   "degradations": [
+    "angle",
+    "glare",
+    "occlusion",
+    "motion_blur"
+   ],
+   "case_problem": null,
+   "fields": {
+    "name": "رنا جاسم احمد",
+    "business_name": "معرض السلام للسيارات",
+    "license_number": "BL-41020",
+    "activity": "بيع مواد غذائية",
+    "issue_date": "2025/11/17",
+    "expiry_date": "2028/11/16"
+   }
+  },
+  {
+   "file": "case007_tax.jpg",
+   "case": "demo-007",
+   "document": "tax",
+   "kind": "tax_card",
+   "side": "page",
+   "level": "poor",
+   "degradations": [
+    "glare"
+   ],
+   "case_problem": null,
+   "fields": {
+    "name": "رنا جاسم احمد الطائي",
+    "business_name": "معرض السلام للسيارات",
+    "tax_number": "1151083668",
+    "issue_date": "2025/01/22",
+    "expiry_date": "2027/01/22"
+   }
+  }
+ ],
+ "piles": [
+  {
+   "file": "pile_case000.jpg",
+   "case": "demo-000",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case001.jpg",
+   "case": "demo-001",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case002.jpg",
+   "case": "demo-002",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case003.jpg",
+   "case": "demo-003",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case004.jpg",
+   "case": "demo-004",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case005.jpg",
+   "case": "demo-005",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case006.jpg",
+   "case": "demo-006",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  },
+  {
+   "file": "pile_case007.jpg",
+   "case": "demo-007",
+   "documents": [
+    "id_front",
+    "id_back",
+    "license",
+    "tax"
+   ]
+  }
+ ]
+}

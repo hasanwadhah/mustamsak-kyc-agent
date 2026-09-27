@@ -56,11 +56,14 @@ your computer**, and every document in this repository is **fictional**.
 
 ## Screenshots
 
-| Upload, with guidance on sharing documents safely | The same screen in Arabic (RTL) |
+| **Passed on its own:** a complete, correct file | **Handed to a person:** an expired licence, in Arabic (RTL) |
 |---|---|
-| <img src="docs/screenshots/01-upload-en.png" alt="Upload screen in English" width="420"> | <img src="docs/screenshots/03-upload-ar.png" alt="Upload screen in Arabic" width="420"> |
-| **A file with a deliberate error:** an expired licence, flagged | **Evaluation:** held-out accuracy and calibration |
-| <img src="docs/screenshots/05-flawed-ar.png" alt="Decision for a file with an expired licence, in Arabic" width="420"> | <img src="docs/screenshots/04-evaluation-en.png" alt="Evaluation screen" width="420"> |
+| <img src="docs/screenshots/02-decision-en.png" alt="Decision screen: the file passes automatically, 28 of 30 fields auto-accepted" width="420"> | <img src="docs/screenshots/05-flawed-ar.png" alt="Decision for a file with an expired licence, in Arabic" width="420"> |
+| **Upload:** live held-out results, six demo scenarios, safe-sharing guidance | **Evaluation:** held-out accuracy and calibration |
+| <img src="docs/screenshots/01-upload-en.png" alt="Upload screen in English" width="420"> | <img src="docs/screenshots/04-evaluation-en.png" alt="Evaluation screen" width="420"> |
+
+The upload screen in Arabic: [docs/screenshots/03-upload-ar.png](docs/screenshots/03-upload-ar.png). The
+interface's design system (tokens, components, accessibility checks) is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## A 3-minute demo for judges
 

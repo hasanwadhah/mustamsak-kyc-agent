@@ -2,7 +2,7 @@ from copy import deepcopy
 import numpy as np
 import pytest
 from fastapi.testclient import TestClient
-from app import focused_fields as f,understanding as u,main,storage,pipeline,vision
+from app import arabic_ocr,focused_fields as f,understanding as u,main,storage,pipeline,vision
 from app.mrz import check_digit
 
 def line(text,x1=40,y1=400,x2=860,y2=435):
@@ -26,6 +26,7 @@ def test_repaired_and_compact_dates_remain_approximate():
     assert f.date_readings('20240229',True)[0]['approximate']
     assert not u.valid_value('issue_date','2O24/O2/29')
 
+@pytest.mark.skipif(not arabic_ocr.available(), reason='Arabic OCR model not installed: run setup.ps1')
 def test_housing_region_uses_form_label_not_merged_numeric_value():
     im=np.zeros((568,876,3),np.uint8)
     lines=[line('عنوان الكن م٩٤٧٣',175,404,833,495),line('رقم الاستمارة',655,475,821,524),line('12345',309,475,550,534)]

@@ -1,9 +1,13 @@
 """Cards photographed small, faded or on a busy background (synthetic images only)."""
 import cv2
 import numpy as np
+import pytest
 
-from app import handwritten_digits as hd, vision
+from app import arabic_ocr, handwritten_digits as hd, vision
 from app.focused_fields import plausible_office
+
+# Downloaded by setup.ps1 (git-ignored), so a fresh clone skips these instead of failing.
+needs_arabic_ocr = pytest.mark.skipif(not arabic_ocr.available(), reason='Arabic OCR model not installed: run setup.ps1')
 
 
 def pale_card():
@@ -60,6 +64,7 @@ def test_even_lighting_restores_contrast_of_a_washed_out_photo():
     assert int(fixed.min()) < int(washed.min()) and fixed[5, 5, 0] >= 225  # darker ink, paper stays white
 
 
+@needs_arabic_ocr
 def test_blurred_labels_still_place_the_rows_from_the_printed_form():
     from app.focused_fields import housing_regions, HOUSING_TEMPLATE_ROWS
 

@@ -130,16 +130,35 @@ async function chooseFiles(files) {
   if (!files.length) return;
   state.files.forEach(f => f.url && URL.revokeObjectURL(f.url));
   state.files = files.map(file => ({ file, url: /^image\//.test(file.type) ? URL.createObjectURL(file) : null, check: null }));
+  const round = state.fileRound = (state.fileRound || 0) + 1;
   renderPrecheck();
+  scrollToCheck('nearest');
   await Promise.all(state.files.map(async item => {
     const form = new FormData(); form.append('file', item.file);
     try { item.check = await api('/api/capture-check', { method: 'POST', body: form }); } catch (e) { item.check = { error: e.message }; }
     renderPrecheck();
   }));
+  if (round !== state.fileRound || !state.files.length) return;  // other files were chosen meanwhile
+  // Choosing files moves on by itself: good or merely imperfect photos go straight to reading. A photo worth
+  // retaking (or one that could not be checked) stops here, with its advice in view and "read anyway" focused.
+  const stop = state.files.filter(f => f.check?.retake || f.check?.error).length;
+  if (!stop) { toast(t('photosGood')); $('#readFiles').click(); return; }
+  const note = $('#precheckNote'); note.textContent = t('precheckStop', stop, state.files.length); note.hidden = false;
+  scrollToCheck('start'); $('#readFiles').focus({ preventScroll: true });
+}
+// Bring the photo check into view from its top (its advice note), even when it is taller than the screen.
+// If smooth scrolling is unavailable (reduced motion, or a browser that skips it), jump instead.
+function scrollToCheck(block) {
+  const target = $('#precheck'), before = scrollY;
+  target.style.scrollMarginTop = `${($('.topbar')?.offsetHeight || 0) + 16}px`;  // clear the sticky top bar at any width
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  target.scrollIntoView({ block, behavior: reduce ? 'auto' : 'smooth' });
+  if (!reduce) setTimeout(() => { if (scrollY === before) target.scrollIntoView({ block, behavior: 'auto' }); }, 450);
 }
 function renderPrecheck() {
   const box = $('#precheck'), list = $('#precheckList');
   box.hidden = !state.files.length; list.replaceChildren();
+  if (state.files.some(f => !f.check)) $('#precheckNote').hidden = true;  // shown again once the check decides
   state.files.forEach(item => {
     const li = el('li', 'file-item');
     const thumb = el('div', 'thumb');

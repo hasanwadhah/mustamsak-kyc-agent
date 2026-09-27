@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120">
+  <!-- Empty state: documents will land here. Two muted cards behind a dashed drop frame. Key light top-left. -->
+  <defs>
+    <linearGradient id="back" x1=".2" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e3e9ef"/>
+    </linearGradient>
+    <radialGradient id="ground" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#0f1f2e" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#0f1f2e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="80" cy="106" rx="46" ry="6" fill="url(#ground)"/>
+  <g transform="rotate(-8 60 60)">
+    <rect x="26" y="30" width="62" height="42" rx="7" fill="url(#back)" stroke="#cdd6e0" stroke-width="1.5"/>
+    <rect x="33" y="37" width="14" height="18" rx="3" fill="#dbe3ea"/>
+    <rect x="52" y="39" width="28" height="4" rx="2" fill="#dbe3ea"/>
+    <rect x="52" y="48" width="20" height="4" rx="2" fill="#e4eaf0"/>
+  </g>
+  <g transform="rotate(6 100 62)">
+    <rect x="70" y="36" width="62" height="44" rx="7" fill="url(#back)" stroke="#cdd6e0" stroke-width="1.5"/>
+    <rect x="78" y="44" width="40" height="4" rx="2" fill="#dbe3ea"/>
+    <rect x="78" y="53" width="30" height="4" rx="2" fill="#e4eaf0"/>
+    <rect x="78" y="62" width="36" height="4" rx="2" fill="#e4eaf0"/>
+  </g>
+  <rect x="44" y="50" width="72" height="48" rx="9" fill="#e6f3f0" fill-opacity=".7" stroke="#11685d" stroke-opacity=".55" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M80 64v18M71 73l9 9 9-9" fill="none" stroke="#11685d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

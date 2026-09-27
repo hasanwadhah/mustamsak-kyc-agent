@@ -47,11 +47,59 @@ gets a taller line height (1.75).
 - **Document rail.** Sticky jump links, one per document, each with its own status.
 - **Field row.** Label, value, confidence meter with a threshold mark, and a status chip with an icon.
 
+## Emblems (`static/emblems/`)
+
+Illustrations are used only where a picture carries meaning, not as decoration:
+
+| Emblem | Where | Shape | Motion |
+|---|---|---|---|
+| `verdict-pass` | Decision: the file passes | Shield | Pops in once and draws its check |
+| `verdict-review` | Decision: hand over to a person | Round medallion | Pops in once and draws its check |
+| `verdict-pending` | Decision: waiting for documents | Rounded square | The clock hand turns |
+| `reading-scan` | While the agent reads | ID card in a scan frame | A beam sweeps the card |
+| `empty-docs` | "Documents found", before the first one arrives | Two cards and a drop frame | None |
+
+Each emblem has a **different shape**, so the states are distinguishable without colour. All five share one
+recipe:
+
+- one key light at the top left;
+- a three-stop body gradient;
+- an offset darker copy for thickness;
+- a soft ground shadow, and a faint halo only behind the verdicts;
+- colours from the tokens above;
+- a transparent background.
+
+The **SVG** is the master, and it is what the app serves. Its motion lives in one `<style id="motion">` block
+that switches off under `prefers-reduced-motion`. The **PNG** next to it is a still fallback, rendered with
+that block removed so it shows the end state.
+
+To re-render the PNGs, take each SVG, drop `#motion`, and screenshot it in headless Edge with
+`--default-background-color=00000000` at 256 px (the empty state at 320×240). The page's Content Security
+Policy (`connect-src 'self'`) rightly blocks in-page export to another port.
+
+The verdict `<img>` is reused while the verdict is unchanged, so moving the threshold slider does not
+replay the animation.
+
+## Live states
+
+- **Loading.** `busy(button, true)` sets `aria-busy` and `disabled`, and shows a spinner in place of the
+  label without changing the button's size. It is used by *Read these documents* and *Print the sorted file*.
+- **Success in place.** *Copy* turns into a green "Copied" with a check for 1.8 s. If copying fails, a toast
+  explains how to recover.
+- **You are here.** The document rail marks the document that fills most of the screen (`aria-current`,
+  via `IntersectionObserver`).
+- **Direction.** Arrows on links and on reviewer items shift 3 px towards their target on hover (mirrored
+  in Arabic).
+- **Progress.** Each reading step pops its check when it completes.
+- **Empty state.** The empty state says what will appear and when.
+
 ## Accessibility and quality checks
 
 - Visible focus ring on everything (`:focus-visible`, 3 px). Real `<button>`s for every action, including
   the reasons list. `aria-current` on the active tab and the current step.
-- Touch targets are 40–44 px. There is no horizontal scroll at 375 px (checked).
+- Touch targets are 40–44 px. There is no horizontal scroll on the upload, decision (English and Arabic),
+  evaluation or "How it works" views at 320, 375, 768, 1024, 1280 or 1440 px (checked). Grid tracks use
+  `minmax(0, 1fr)` so wide tables scroll inside their panel instead of widening the page.
 - `prefers-reduced-motion` turns off every animation and transition.
 - The guided tour's selectors (`static/tour.js`) are part of the contract. Keep `#dropzone`,
   `.demo-card.tone-info`, `#decision .stats`, `.controls`, `#reasonsPanel`, `.doc-card .field` and `.actions`.

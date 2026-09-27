@@ -99,7 +99,7 @@
       <div class="panel reading">
         <div>
           <div class="reading-head">
-            <span class="scan-mark" aria-hidden="true"><span data-icon="scan"></span></span>
+            <img class="scan-mark" src="/static/emblems/reading-scan.svg" width="56" height="56" alt="" aria-hidden="true">
             <div class="grow">
               <h1 data-t="readingTitle">The agent is reading the file</h1>
               <p class="lead" id="readingMessage" aria-live="polite"></p>
@@ -117,6 +117,10 @@
         </div>
         <div>
           <p class="found-title"><span data-t="foundTitle">Documents found</span><span id="foundCount" class="chip neutral num">0</span></p>
+          <div class="found-empty" id="foundEmpty">
+            <img src="/static/emblems/empty-docs.svg" width="160" height="120" alt="" aria-hidden="true">
+            <p data-t="foundEmpty">Each document appears here as soon as the agent finds and identifies it.</p>
+          </div>
           <div class="found" id="foundDocs"></div>
         </div>
       </div>

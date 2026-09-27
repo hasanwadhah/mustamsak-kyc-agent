@@ -49,6 +49,8 @@ function icon(name, cls = '') {
 }
 // Static markup marks icon spots with <span data-icon="name">; they are filled once on load.
 $$('[data-icon]').forEach(s => s.replaceWith(icon(s.dataset.icon, s.dataset.icon === 'arrow' ? 'flip-rtl' : '')));
+// Loading state for a button that starts slow work: keeps its size, shows a spinner, blocks double clicks.
+function busy(btn, on) { if (on) btn.setAttribute('aria-busy', 'true'); else btn.removeAttribute('aria-busy'); btn.disabled = on; }
 function chipIcon(cls, iconName, text) { const c = el('span', `chip ${cls}`); c.append(icon(iconName), el('span', null, text)); return c; }
 async function api(path, options) {
   const r = await fetch(path, options);
@@ -162,7 +164,8 @@ $('#readFiles').onclick = async () => {
   if (!state.files.length) return;
   const form = new FormData(); state.files.forEach(f => form.append('files', f.file, f.file.name));
   state.expected = state.files.length;
-  await startReading(() => api('/api/batches', { method: 'POST', body: form }));
+  busy($('#readFiles'), true);
+  try { await startReading(() => api('/api/batches', { method: 'POST', body: form })); } finally { busy($('#readFiles'), false); }
 };
 
 /* ---------------------------------------------------------------- demo files */
@@ -231,6 +234,7 @@ function renderProof() {
 /* ---------------------------------------------------------------- reading (live) */
 async function startReading(start) {
   showStage('read'); setReading(t('readingStart'), 3, 0); $('#foundDocs').replaceChildren(); $('#foundCount').textContent = '0';
+  $('#foundEmpty').hidden = false;
   const started = Date.now(); clearInterval(state.clock);
   const tick = () => { $('#readingElapsed').textContent = t('elapsed', Math.round((Date.now() - started) / 1000)); };
   tick(); state.clock = setInterval(tick, 1000);
@@ -271,7 +275,7 @@ function kindName(d) {
 function renderFound(docs) {
   const box = $('#foundDocs');
   if (box.childElementCount === docs.length) return;
-  $('#foundCount').textContent = String(docs.length);
+  $('#foundCount').textContent = String(docs.length); $('#foundEmpty').hidden = docs.length > 0;
   // Only the new documents are added, so earlier cards do not flash again.
   docs.slice(box.childElementCount).forEach((d, i) => {
     const f = el('figure', 'found-doc'); f.style.animationDelay = `${i * 70}ms`;
@@ -299,7 +303,14 @@ function counts(k) {
 function renderDecision() {
   const k = state.kyc; if (!k) return;
   const hero = $('#decision'); hero.replaceChildren(); hero.className = `decision ${k.decision}`;
-  const badge = el('span', 'decision-icon'); badge.append(icon(k.decision === 'pass' ? 'shield' : k.decision === 'review' ? 'userCheck' : 'clock'));
+  // The emblem animates once when it first appears (draws its check); moving the threshold re-renders the
+  // hero, so the same <img> is reused while the verdict is unchanged instead of replaying the animation.
+  const verdict = k.decision === 'pass' ? 'pass' : k.decision === 'review' ? 'review' : 'pending';
+  if (state.emblem?.verdict !== verdict) {
+    const img = el('img'); img.src = `/static/emblems/verdict-${verdict}.svg`; img.width = img.height = 76; img.alt = '';
+    state.emblem = { verdict, img };
+  }
+  const badge = el('span', 'decision-icon'); badge.setAttribute('aria-hidden', 'true'); badge.append(state.emblem.img);
   const blocking = (k.reasons || []).filter(r => r.severity === 'block').length;
   const others = (k.reasons || []).length - blocking;
   const text = el('div', 'grow');
@@ -365,6 +376,7 @@ function docTally(d) {
   const criticalOpen = d.fields.some(f => f.critical && fieldStatus(f) !== 'auto');
   return { ...tally, state: d.kind === 'unknown' || criticalOpen ? 'bad' : tally.human || tally.blank ? 'check' : 'ok' };
 }
+let railObserver;
 function renderRail(docs) {
   const rail = $('#docRail'); rail.replaceChildren();
   rail.hidden = docs.length < 2;
@@ -374,8 +386,17 @@ function renderRail(docs) {
     const open = tally.human + tally.blank;
     const text = el('span', 'rail-text'); text.append(el('b', null, kindName(d)), el('small', null, open ? t('railCheck', open) : t('railOk')));
     b.append(dot, text);
-    b.onclick = () => focusField(d.id); rail.append(b);
+    b.dataset.doc = d.id; b.onclick = () => focusField(d.id); rail.append(b);
   });
+  // "You are here": the rail marks the document that fills most of the screen.
+  railObserver?.disconnect();
+  const seen = new Map();
+  railObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => seen.set(e.target.id.slice(4), e.intersectionRatio));
+    const [top] = [...seen].sort((a, b) => b[1] - a[1]);
+    $$('.rail-item').forEach(b => b.toggleAttribute('aria-current', !!top && top[1] > 0 && b.dataset.doc === top[0]));
+  }, { threshold: [0, .15, .3, .5, .75, 1], rootMargin: '-120px 0px -30% 0px' });
+  $$('.doc-card').forEach(card => railObserver.observe(card));
 }
 function documentCard(d, i, n, threshold) {
   const card = el('article', 'panel doc-card'); card.id = `doc-${d.id}`;
@@ -426,19 +447,26 @@ function focusField(docId, key) {
 let thresholdTimer;
 $('#threshold').oninput = () => { $('#thresholdValue').textContent = pct($('#threshold').value); clearTimeout(thresholdTimer); thresholdTimer = setTimeout(loadDecision, 250); };
 $('#profile').onchange = loadDecision;
-$('#copySummary').onclick = async () => { try { await navigator.clipboard.writeText($('#summary').textContent); toast(t('copied')); } catch {} };
+// Copy confirms in place (icon and label turn into "Copied" for a moment), not only in a toast.
+$('#copySummary').onclick = async e => {
+  const btn = e.currentTarget;
+  try { await navigator.clipboard.writeText($('#summary').textContent); } catch { toast(t('copyFailed'), true); return; }
+  const before = [...btn.childNodes];
+  btn.classList.add('is-done'); btn.replaceChildren(icon('check'), el('span', null, t('copyDone')));
+  clearTimeout(btn._reset); btn._reset = setTimeout(() => { btn.classList.remove('is-done'); btn.replaceChildren(...before); }, 1800);
+};
 $('#downloadReport').onclick = () => {
   const a = el('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(state.kyc, null, 2)], { type: 'application/json' }));
   a.download = `kyc-decision-${state.batch.id.slice(0, 8)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 };
 $('#printFile').onclick = async () => {
   const ids = [...state.kyc.documents].sort((a, b) => rank(a) - rank(b)).map(d => d.id);
-  toast(t('printing'));
+  const btn = $('#printFile'); busy(btn, true);
   try {
     const r = await api(`/api/batches/${state.batch.id}/export`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ids, format: 'pdf', layout: 'pairs', size: 'fit', allow_unreviewed: true }) });
     window.open(URL.createObjectURL(await r.blob()), '_blank');
-  } catch (e) { toast(e.message, true); }
+  } catch (e) { toast(e.message, true); } finally { busy(btn, false); }
 };
 $('#newFile').onclick = () => { state.kyc = null; state.batch = null; $('#clearFiles').click(); showStage('upload'); };
 

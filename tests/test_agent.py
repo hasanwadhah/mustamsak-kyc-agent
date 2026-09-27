@@ -52,6 +52,19 @@ def test_evaluation_endpoint_reports_what_exists(client, monkeypatch, tmp_path):
     assert r['heldout'] == {'images': 64, 'kyc': {}}  # per-case details stay out of the page
 
 
+def test_version_reports_the_running_commit_or_nothing_without_git(client, monkeypatch):
+    import subprocess
+    from app import runtime
+    v = client.get('/api/version').json()
+    assert set(v) == {'git', 'restart_needed'}
+    if v['git']:  # a clone: the commit is the one git reports, compared with the last fetch of GitHub
+        head = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], capture_output=True, text=True, cwd=runtime.ROOT).stdout.strip()
+        assert v['git']['commit'] == head and {'date', 'behind', 'ahead', 'changed'} <= set(v['git'])
+    # A downloaded ZIP (no git) still answers, without a version.
+    monkeypatch.setattr(subprocess, 'run', lambda *a, **k: (_ for _ in ()).throw(FileNotFoundError()))
+    assert runtime.git_version() is None
+
+
 def test_the_agent_screen_and_the_workspace_are_both_served(client):
     assert 'KYC Document Agent' in client.get('/').text
     assert 'مستمسك' in client.get('/workspace').text

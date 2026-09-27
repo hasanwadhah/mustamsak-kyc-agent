@@ -24,5 +24,29 @@ def last_edit():
     return time.strftime('%Y-%m-%d %H:%M', time.localtime(newest))
 
 
+def git_version():
+    """Which GitHub commit this folder runs, compared with the last fetch of GitHub (start.ps1 fetches).
+
+    Returns None when git or the repository is missing (e.g. a downloaded ZIP). Never touches the network.
+    """
+    import subprocess
+
+    def git(*args):
+        result = subprocess.run(['git', '-C', str(ROOT), *args], capture_output=True, text=True, timeout=5,
+                                creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        return result.stdout.strip() if result.returncode == 0 else None
+    try:
+        head = git('log', '-1', '--format=%h|%cs')
+        if not head:
+            return None
+        commit, date = head.split('|')
+        counts = git('rev-list', '--left-right', '--count', 'HEAD...origin/main')
+        ahead, behind = (int(n) for n in counts.split()) if counts else (0, 0)
+        return {'commit': commit, 'date': date, 'behind': behind, 'ahead': ahead,
+                'changed': bool(git('status', '--porcelain', '--untracked-files=no'))}
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return None
+
+
 STARTED_REVISION = revision()
 STARTED_EDIT = last_edit()

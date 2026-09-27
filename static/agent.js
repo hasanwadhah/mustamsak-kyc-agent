@@ -71,7 +71,7 @@ function applyLanguage() {
   $('#langToggle').textContent = lang === 'ar' ? 'English' : 'عربي';
   $('#langToggle').lang = lang === 'ar' ? 'en' : 'ar';
   document.title = `${t('brand')} · ${t('brandSub')}`;
-  renderStatic(); renderDemos(); renderPrecheck(); renderProof();
+  renderStatic(); renderDemos(); renderPrecheck(); renderProof(); renderVersion();
   if (state.kyc) renderDecision();
   if (state.evaluation) renderEvaluation();
 }
@@ -528,6 +528,22 @@ function reliabilityChart(bins) {
   const wrap = el('figure', 'chart-wrap'); wrap.append(svg);
   const legend = el('figcaption', 'legend'); const a = el('span', 'l-diag', t('perfect')), b = el('span', 'l-agent', t('agent')); legend.append(a, b); wrap.append(legend);
   return wrap;
+}
+
+/* ---------------------------------------------------------------- version (which GitHub commit is running) */
+async function renderVersion() {
+  const box = $('#appVersion'); if (!box) return;
+  let v; try { v = await api('/api/version'); } catch { return; }
+  const g = v.git; box.replaceChildren(); box.className = '';
+  if (!g) { box.append(el('span', null, t('versionNoGit'))); return; }
+  const [tone, mark, text] = v.restart_needed ? ['warn', 'clock', t('versionRestart')]
+    : g.changed ? ['warn', 'alert', t('versionEdited')]
+    : g.behind ? ['warn', 'download', t('versionBehind', g.behind)]
+    : g.ahead ? ['info', 'info', t('versionAhead', g.ahead)]
+    : ['good', 'check', t('versionCurrent')];
+  box.className = `v-${tone}`;
+  box.append(el('span', null, t('version')), el('code', null, g.commit), el('span', 'sep', '·'), el('span', null, g.date),
+             el('span', 'sep', '·'), icon(mark), el('span', null, text));
 }
 
 /* ---------------------------------------------------------------- start */

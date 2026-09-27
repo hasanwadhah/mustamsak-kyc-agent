@@ -99,6 +99,13 @@ def evaluation():
     return out
 
 
+@router.get('/api/version')
+def version():
+    """The commit this copy runs and whether GitHub had newer commits at the last start (see start.ps1)."""
+    from .runtime import STARTED_REVISION, git_version, revision
+    return {'git': git_version(), 'restart_needed': revision() != STARTED_REVISION}
+
+
 @router.get('/workspace')
 def workspace():
     return FileResponse(ROOT / 'static' / 'index.html')

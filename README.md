@@ -130,6 +130,16 @@ The handwriting models trained for this project are already in `models/`.
 Double-click **`Start KYC Agent.cmd`**. The browser opens at **http://127.0.0.1:8766**.
 Double-click **`Stop KYC Agent.cmd`** to stop it. Closing the browser does not stop the server.
 
+**Updates.** If you installed with `git clone`, `Start KYC Agent.cmd` first checks GitHub and brings the folder
+up to the newest version. It only updates when that is safe:
+
+- it only fast-forwards;
+- it never overwrites a file you edited, or a commit that is not on GitHub;
+- when you are offline, it simply starts the version you have.
+
+The bottom of the screen shows the running version and whether it is up to date. If you downloaded a ZIP,
+download it again to update. To skip the check: `powershell -ExecutionPolicy Bypass -File start.ps1 -NoUpdate`.
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File start.ps1         # start
 powershell -ExecutionPolicy Bypass -File start.ps1 -Stop   # stop
@@ -388,6 +398,9 @@ used for research with citation.
    `powershell -ExecutionPolicy Bypass -File setup.ps1`
 4. انقر مرتين على **`Start KYC Agent.cmd`**، فيفتح البرنامج على http://127.0.0.1:8766.
 5. للإيقاف انقر مرتين على **`Stop KYC Agent.cmd`**. إغلاق المتصفح وحده لا يوقف البرنامج.
+6. **التحديث تلقائي:** إذا نزّلت البرنامج بـ `git clone`، يتحقق `Start KYC Agent.cmd` من GitHub عند كل تشغيل، ويثبّت
+   الإصدار الأحدث بأمان. لا يغيّر أي ملف عدّلته، ويعمل بالإصدار الموجود إذا لم يتوفر إنترنت. يظهر الإصدار
+   الحالي أسفل الشاشة.
 
 #### كيف يتخذ القرار
 

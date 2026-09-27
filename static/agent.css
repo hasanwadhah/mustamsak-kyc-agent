@@ -322,6 +322,14 @@ progress::-moz-progress-bar{background:var(--brand);border-radius:6px}
 .cell-bar{display:block;height:4px;border-radius:3px;background:var(--line);margin-top:5px;max-width:120px;overflow:hidden}
 .cell-bar i{display:block;height:100%;background:var(--brand);border-radius:3px}
 
+/* version line: which GitHub commit is running, quiet unless something needs doing */
+.app-foot{max-width:1320px;margin:-40px auto 0;padding:0 28px 28px}
+.app-foot p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.app-foot code{font:600 12px ui-monospace,Consolas,monospace;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;direction:ltr}
+.app-foot .sep{opacity:.5}.app-foot svg.i{width:14px;height:14px}
+.app-foot p.v-good svg.i{color:var(--good)}
+.app-foot p.v-warn{color:var(--warn)}.app-foot p.v-info svg.i{color:var(--info)}
+@media (max-width:900px){.app-foot{padding:0 16px 24px}}
 #toast{position:fixed;bottom:22px;inset-inline-start:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;box-shadow:var(--shadow-2);max-width:min(560px,92vw);font-size:14px;animation:pop .25s var(--ease)}
 [dir=rtl] #toast{transform:translateX(50%)}#toast.error{background:#8c2a24}
 

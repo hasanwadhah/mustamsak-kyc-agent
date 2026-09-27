@@ -4,7 +4,7 @@ const paths={grid:'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',folder
 const icon=n=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n]||paths.documents}"/></svg>`;
 function icons(root=document){root.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=icon(e.dataset.icon));}
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const number=n=>new Intl.NumberFormat('ar-IQ').format(n);
+const number=n=>new Intl.NumberFormat('ar-IQ-u-nu-latn').format(n);
 let state={batch:null,types:{},filter:'all',search:'',selected:new Set(),editorId:null,source:null,points:[],image:null,drag:-1,zoom:1};
 let pollTimer,toastTimer,pdfUrl,batchRequest=0;
 function toast(text,error=false){const e=$('#toast');e.textContent=text;e.style.background=error?'#8c3540':'#183e35';e.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.hidden=true,6000);}
@@ -20,6 +20,9 @@ function render(){
  const docs=currentDocs(), groups=new Set(docs.map(d=>d.group));
  $('#totalCount').textContent=number(docs.length);$('#groupCount').textContent=number(groups.size);$('#reviewCount').textContent=number(docs.filter(d=>!d.reviewed).length);$('#readyCount').textContent=number(docs.filter(d=>d.reviewed).length);$('#navCount').textContent=docs.length;$('#sectionCount').textContent=docs.length;
  const running=state.batch&&['queued','processing'].includes(state.batch.status);
+ // One way to add files at a time: the large drop area while the workspace is empty, the «إضافة ملفات»
+ // button once documents are listed (style.css hides the other one). Dropping on the page works in both.
+ document.body.classList.toggle('has-docs',docs.length>0);
  $('#progressPanel').hidden=!running;$('#newUpload').disabled=!!running;$('#chooseFiles').disabled=!!running;
  if(running){$('#progressText').textContent=state.batch.message;$('#progressBar').value=state.batch.progress;$('#progressTitle').textContent='فصل المستمسكات وقراءتها محليًا';}
  $('#deleteBatch').disabled=!state.batch||!!running;
@@ -28,7 +31,7 @@ function render(){
  $('#refineFields').disabled=!!state.refiningFields||!!running||!docs.some(d=>!d.reviewed&&(d.kind==='housing'||d.kind==='national_id'));
  $('#pairNational').disabled=running||!docs.some(d=>d.kind==='national_id');
  $('#showSources').disabled=!state.batch?.sources.length||running;$('#exportBtn').disabled=!docs.length||running;
- $('#batchLabel').textContent=state.batch?`${state.batch.name} · ${new Date(state.batch.created).toLocaleDateString('ar-IQ')}`:'مساحة مرتبة لكل وجه وكل ملف';
+ $('#batchLabel').textContent=state.batch?`${state.batch.name} · ${new Date(state.batch.created).toLocaleDateString('ar-IQ-u-nu-latn')}`:'مساحة مرتبة لكل وجه وكل ملف';
  $('#batchErrors').hidden=!state.batch?.errors.length;
  if(state.batch?.errors.length)$('#batchErrors').textContent=state.batch.errors.map(e=>`${e.file}: ${e.message}`).join(' • ');
  $('#selectionbar').hidden=!docs.length||running;
@@ -47,6 +50,10 @@ async function refreshBatch(id){const request=++batchRequest;clearTimeout(pollTi
 async function uploadFiles(files){if(!files?.length)return;if(state.batch&&['queued','processing'].includes(state.batch.status)){toast('انتظر اكتمال الدفعة الحالية.');return;}const data=new FormData();[...files].forEach(f=>data.append('files',f));$('#progressPanel').hidden=false;$('#progressTitle').textContent='رفع الملفات إلى المحرك المحلي';$('#progressText').textContent='جارٍ تجهيز الدفعة…';$('#chooseFiles').disabled=true;try{const b=await api('/api/batches',{method:'POST',body:data});state.openPersonForBatch=b.id;state.selected.clear();localStorage.setItem('lastBatch',b.id);await refreshBatch(b.id);}catch(e){toast(e.message,true);$('#progressPanel').hidden=true;$('#chooseFiles').disabled=false;}finally{$('#fileInput').value='';}}
 $('#fileInput').onchange=e=>uploadFiles(e.target.files);$('#chooseFiles').onclick=$('#newUpload').onclick=()=>$('#fileInput').click();
 const drop=$('#dropzone');['dragenter','dragover'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.add('dragging');}));['dragleave','drop'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.remove('dragging');}));drop.addEventListener('drop',e=>uploadFiles(e.dataTransfer.files));
+// With documents listed the drop area is hidden, so files dropped anywhere on the page are added instead.
+['dragover','drop'].forEach(n=>document.addEventListener(n,e=>{
+ if(!document.body.classList.contains('has-docs')||!e.dataTransfer?.types?.includes('Files')||e.target.closest?.('dialog'))return;
+ e.preventDefault();if(n==='drop'&&!$('#newUpload').disabled)uploadFiles(e.dataTransfer.files);}));
 
 $('#workspaceNav').onclick=()=>$('#main').scrollIntoView({behavior:'smooth'});$('#guideNav').onclick=()=>openDialog('#guideDialog');$('#settingsNav').onclick=()=>openDialog('#settingsDialog');
 $('#pairNational').onclick=()=>action($('#pairNational'),async()=>{const bid=state.batch.id;const result=await api(`/api/batches/${bid}/pair-national`,{method:'POST'});if(state.batch?.id!==bid)return;state.batch=result;render();const pairs=new Set(result.documents.filter(d=>d.pairing?.status==='matched').map(d=>d.group));toast(`تمت مطابقة ${number(pairs.size)} زوج من أوجه الموحدة. راجع الحالات المتبقية.`);});

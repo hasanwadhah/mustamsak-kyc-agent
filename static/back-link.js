@@ -3,7 +3,8 @@
 'use strict';
 (function backToAgent(){
  const a=document.createElement('a');a.className='nav-item back-to-agent';a.href='/';
- a.innerHTML='<span data-icon="grid"></span><span>العودة إلى الشاشة الرئيسية</span>';
+ a.innerHTML='<span data-icon="grid"></span><span>الشاشة الرئيسية</span>';
+ a.setAttribute('aria-label','العودة إلى الشاشة الرئيسية');
  // Keep the address on the file shown here, so coming back reopens its decision.
  const sync=()=>{const id=typeof state!=='undefined'&&state.batch&&state.batch.id;a.href=id?'/?batch='+encodeURIComponent(id):'/';};
  sync();setInterval(sync,700);

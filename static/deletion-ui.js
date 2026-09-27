@@ -9,7 +9,7 @@ async function loadHistory(){
   if(request!==historyRequest)return;
   $('#historyList').innerHTML=batches.length?batches.map(b=>{
    const running=['queued','processing'].includes(b.status);
-   return `<div class="history-row"><div><strong>${escape(b.name)}</strong><p>${new Date(b.created).toLocaleString('ar-IQ')} · ${number(b.count)} مستمسك · ${escape(b.message)}</p></div><div class="history-actions"><button class="secondary" data-batch="${b.id}">فتح</button><button class="danger" data-delete-batch="${b.id}" aria-label="حذف دفعة ${escape(b.name)}" ${running?'disabled title="انتظر اكتمال المعالجة"':''}>حذف</button></div></div>`;
+   return `<div class="history-row"><div><strong>${escape(b.name)}</strong><p>${new Date(b.created).toLocaleString('ar-IQ-u-nu-latn')} · ${number(b.count)} مستمسك · ${escape(b.message)}</p></div><div class="history-actions"><button class="secondary" data-batch="${b.id}">فتح</button><button class="danger" data-delete-batch="${b.id}" aria-label="حذف دفعة ${escape(b.name)}" ${running?'disabled title="انتظر اكتمال المعالجة"':''}>حذف</button></div></div>`;
   }).join(''):'لا توجد دفعات محفوظة.';
   $$('[data-batch]').forEach(button=>button.onclick=()=>action(button,async()=>{
    state.selected.clear();

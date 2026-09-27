@@ -83,7 +83,7 @@ class Shutdown(BaseModel):
 
 @app.post('/api/shutdown')
 def shutdown(body:Shutdown):
-    """Stop the app (sidebar button or إيقاف.cmd). The server runs in the background without a
+    """Stop the app (sidebar button or "Stop KYC Agent.cmd"). The server runs in the background without a
     window, so closing the browser never stops it. Refused while documents are being processed or
     a training runs, unless forced; a forced stop also stops the training (nothing is installed)."""
     import os

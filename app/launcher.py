@@ -123,7 +123,7 @@ def stop_server(port=8765, force=False, timeout=15):
     except urllib.error.HTTPError as error:
         if error.code == 409 and not force:
             detail = json.loads(error.read().decode('utf-8') or '{}').get('detail', '')
-            raise RuntimeError(f'The app is busy ({detail}). Wait, or run: إيقاف.cmd -Force')
+            raise RuntimeError(f'The app is busy ({detail}). Wait, or run: "Stop KYC Agent.cmd" -Force')
     except OSError:
         pass
     deadline = time.monotonic() + timeout

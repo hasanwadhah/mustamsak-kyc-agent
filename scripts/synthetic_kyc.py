@@ -353,7 +353,19 @@ def photograph(doc, level, rng):
 
 
 # ------------------------------------------------------------------ cases
-def make_case(index, split, rng):
+# The demo split tells one story per case instead of random draws (tune and held-out stay random):
+# (planted problem, photo level per document id_front/id_back/license/tax, handwritten licence name).
+DEMO_PLAN = [
+    (None, ['clean', 'clean', 'clean', 'clean'], False),               # a good file: the agent can pass it alone
+    ('name_mismatch', ['clean', 'clean', 'clean', 'clean'], False),    # the licence belongs to someone else
+    ('expired_license', ['clean', 'clean', 'clean', 'clean'], False),  # the licence ran out
+    ('serial_mismatch', ['clean', 'clean', 'clean', 'clean'], False),  # the two ID faces are different cards
+    (None, ['poor', 'clean', 'poor', 'clean'], True),                  # real-life photos: a person checks a few fields
+    (None, ['worst', 'poor', 'worst', 'poor'], False),                 # unusable photos: the agent asks for retakes
+]
+
+
+def make_case(index, split, rng, plan=None):
     p = person(rng, split)
     other = person(rng, split)
     names = pool(BUSINESS, split)
@@ -366,16 +378,17 @@ def make_case(index, split, rng):
     biz['tax_issue'] = random_date(rng, date(2025, 1, 1), date(2026, 6, 1))
     biz['tax_expiry'] = biz['tax_issue'] + timedelta(days=2 * 365)
     back_person = p
-    problem = None
     roll = rng.random()
-    if roll < .15:
-        problem = 'name_mismatch'; biz['owner'] = full_name(other, 3)
-    elif roll < .25:
-        problem = 'expired_license'
+    problem = 'name_mismatch' if roll < .15 else 'expired_license' if roll < .25 else 'serial_mismatch' if roll < .35 else None
+    if plan:
+        problem, biz['hand'] = plan[0], plan[2]
+    if problem == 'name_mismatch':
+        biz['owner'] = full_name(other, 3)
+    elif problem == 'expired_license':
         biz['issue_date'] = random_date(rng, date(2019, 1, 1), date(2022, 6, 1))
         biz['expiry_date'] = biz['issue_date'] + timedelta(days=3 * 365)
-    elif roll < .35:
-        problem = 'serial_mismatch'; back_person = dict(p, document_number=other['document_number'])
+    elif problem == 'serial_mismatch':
+        back_person = dict(p, document_number=other['document_number'])
     seed = int(rng.integers(1, 10 ** 6))
     truth_front = {k: p[k] for k in ('first_name', 'father_name', 'grandfather_name', 'surname', 'mother_name', 'sex',
                                      'national_number', 'document_number')} | {'name': full_name(p)}
@@ -406,10 +419,14 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     labels = []
     levels = ['clean', 'poor', 'worst']
-    for case in range(args.cases):
-        problem, docs = make_case(case, args.split, rng)
-        for name, kind, side, image, truth in docs:
+    count = len(DEMO_PLAN) if args.split == 'demo' else args.cases
+    for case in range(count):
+        plan = DEMO_PLAN[case] if args.split == 'demo' else None
+        problem, docs = make_case(case, args.split, rng, plan)
+        for n, (name, kind, side, image, truth) in enumerate(docs):
             level = levels[rng.choice(3, p=[.3, .4, .3])]
+            if plan:
+                level = plan[1][n]
             photo, applied = photograph(image, level, rng)
             file = f'case{case:03}_{name}.jpg'
             (out / file).write_bytes(photo)

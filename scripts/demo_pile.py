@@ -45,7 +45,7 @@ def place(canvas, doc, centre, width, angle, rng):
     canvas[:] = canvas * (1 - alpha) + warped * alpha
 
 
-def pile(case, rng, width=2400, height=1700):
+def pile(case, rng, width=3600, height=2550):  # a 9 MP phone photo
     canvas = desk(height, width, rng)
     order = list(WIDTH)
     rng.shuffle(order)  # dropped on the desk in any order

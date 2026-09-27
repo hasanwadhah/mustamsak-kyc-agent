@@ -103,6 +103,30 @@ label.inline{display:flex;align-items:center;gap:8px;margin:0}label.inline selec
 /* The way back to the agent screen is navigation, not the page's main action: an outlined link. */
 .back-to-agent{display:flex;align-items:center;gap:12px;border-radius:8px;text-decoration:none;background:none;border:1px solid var(--border);color:var(--primary)!important;font-weight:600;margin-bottom:18px}
 .back-to-agent:hover{background:var(--tint);border-color:#c7ddd7}
+/* Sidebar icon family (static/nav-icons.js): 32px lit tiles, teal when active. */
+.brand-symbol.has-art{background:none;width:46px;height:46px}.brand-symbol.has-art img{width:46px;height:46px;display:block}
+.nav-item .nav-tile{width:32px;height:32px;flex:none;display:block}
+.nav-item{min-height:48px;padding:8px 10px;border-radius:12px;color:#2b3b4b;font-size:15px;margin-bottom:4px;transition:background .15s,color .15s}
+.nav-item:hover{background:#f3f7f6}.nav-item.active{background:var(--tint);color:#0a4c44}
+.nav-count{margin-right:auto;min-width:26px;height:24px;padding:0 7px;border-radius:12px;background:var(--primary);color:#fff;font:600 12px/24px ui-monospace,Consolas,monospace;text-align:center}
+.nav-caption.tools{margin-top:14px}
+/* The sidebar is a full-height flex column: its items keep their size and the column scrolls on short
+   windows, instead of flexbox squeezing items until their text overflows. */
+@media(min-width:801px){.sidebar{overflow-y:auto;overscroll-behavior:contain}.sidebar>*{flex-shrink:0}}
+/* Room for the 32px tiles and one-line labels; the page offset moves with the width. */
+@media(min-width:1151px){.sidebar{width:256px;padding-inline:16px}.shell{margin-right:256px}}
+@media(min-width:801px) and (max-width:1150px){.sidebar{width:212px}.shell{margin-right:212px}.nav-item{font-size:13.5px;gap:9px;padding-inline:6px}.nav-item .nav-tile{width:28px;height:28px}.back-to-agent .back-text small{display:none}}
+.back-to-agent{gap:10px;min-height:52px;padding:8px 10px;border-radius:12px;background:#fff;box-shadow:0 1px 2px #0f1f2e0d}
+.back-to-agent .back-text{flex:1;display:flex;flex-direction:column;line-height:1.3;text-align:start}
+.back-to-agent .back-text b{font-size:14px;color:var(--ink)}.back-to-agent .back-text small{font-size:12px;color:var(--muted);font-weight:400}
+.back-to-agent .back-arrow{width:18px;height:18px;flex:none;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.back-to-agent:hover .back-arrow{transform:translateX(-3px)}
+#settingsNav,.stop-app{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 12px;margin-top:10px;border:1px solid var(--border);border-radius:11px;background:#fff;color:#2b3b4b;font-size:14px;font-weight:500;justify-content:flex-start}
+#settingsNav:hover{background:#f6f9f9}
+.stop-app{border-color:#f4c7c2;background:#fff7f6;color:#b42318;font-weight:600}.stop-app:hover{background:#fdecea}
+@media(max-width:800px){.nav-item .nav-tile{width:24px;height:24px}.nav-item{min-height:40px;padding:6px 8px}.back-to-agent .back-text small,.back-to-agent .back-arrow,.nav-caption.tools{display:none}.brand-symbol.has-art,.brand-symbol.has-art img{width:36px;height:36px}}
+@media(max-width:400px){.nav-item .nav-tile{display:none}}
+@media(prefers-reduced-motion:reduce){.nav-item,.back-to-agent .back-arrow{transition:none}}
 /* One way to add files at a time (app.js toggles body.has-docs): the drop area while the workspace is
    empty, the «إضافة ملفات» button once documents are listed. */
 body:not(.has-docs) #newUpload{display:none}

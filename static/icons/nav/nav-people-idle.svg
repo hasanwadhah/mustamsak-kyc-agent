@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8FAFC"/><stop offset="1" stop-color="#E3EAF0"/></linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="11" fill="url(#tile)" stroke="#D5DEE6" stroke-width="1.5"/>
+  <rect x="2" y="2" width="36" height="17" rx="10" fill="url(#sheen)"/>
+  <g transform="translate(8 8)">
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#11685D" fill-opacity="0.2"/>
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="#2B3B4B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 13.6a2.1 2.1 0 1 0 0-4.2 2.1 2.1 0 0 0 0 4.2z" fill="none" stroke="#11685D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.6 17.6c.6-1.7 1.9-2.6 3.4-2.6s2.8.9 3.4 2.6" fill="none" stroke="#11685D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

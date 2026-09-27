@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#12675d">
+<meta name="theme-color" content="#11685d">
+<meta name="description" content="Mustamsak reads Iraqi KYC documents on this computer, cross-checks them and hands uncertain fields to a person.">
 <title>Mustamsak · KYC Document Agent</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2311685d'/%3E%3Cpath d='M9 13V9h4M19 9h4v4M23 19v4h-4M13 23H9v-4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="/static/agent.css">
 <link rel="stylesheet" href="/static/tour.css">
 <script defer src="/static/agent-i18n.js"></script>
@@ -24,9 +26,9 @@
     <button class="view-tab" data-view="eval" data-t="navEval">Evaluation</button>
   </nav>
   <div class="top-actions">
-    <span class="local-pill"><i class="dot"></i><span data-t="local">Runs on this computer</span></span>
+    <span class="local-pill"><span data-icon="lock"></span><span data-t="local">Runs on this computer</span></span>
     <button class="ghost" id="langToggle" type="button" lang="ar">عربي</button>
-    <a class="ghost" href="/workspace" id="workspaceLink" data-t="workspace">Reviewer workspace</a>
+    <a class="ghost" href="/workspace" id="workspaceLink"><span data-icon="users"></span><span data-t="workspace">Reviewer workspace</span></a>
   </div>
 </header>
 
@@ -34,63 +36,77 @@
   <!-- ============ Onboard ============ -->
   <section class="view" id="view-onboard">
     <ol class="stepper" aria-label="Progress">
-      <li class="current" data-step="upload"><span>1</span><b data-t="stepUpload">Capture & upload</b></li>
+      <li class="current" data-step="upload" aria-current="step"><span>1</span><b data-t="stepUpload">Capture & upload</b></li>
       <li data-step="read"><span>2</span><b data-t="stepRead">Read & check</b></li>
       <li data-step="decide"><span>3</span><b data-t="stepDecide">Decision</b></li>
     </ol>
 
     <div class="stage" id="stage-upload">
-      <div class="upload-layout">
-        <div class="panel">
+      <div class="intro">
+        <div>
           <p class="eyebrow" data-t="eyebrow">Onboarding · ID · business licence · tax card</p>
           <h1 data-t="uploadTitle">Drop the customer's documents</h1>
           <p class="lead" data-t="uploadLead">All at once, in any order — even several documents in one photo. The agent finds each document, separates it, identifies it and puts the file in order.</p>
-          <label class="dropzone" id="dropzone">
-            <input type="file" id="fileInput" multiple accept="image/*,.pdf,application/pdf" hidden>
-            <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span>
-            <b data-t="dropMain">Drag photos or PDFs here</b>
-            <span class="btn primary" data-t="dropButton">Choose files</span>
-            <small data-t="dropHint">JPG, PNG or PDF · up to 20 files · checked for photo quality before reading</small>
-          </label>
-          <div id="precheck" class="precheck" hidden>
-            <h3 data-t="precheckTitle">Photo check before reading</h3>
-            <ul id="precheckList" class="file-list"></ul>
-            <div class="row gap">
-              <button class="btn primary" id="readFiles" type="button" data-t="readFiles">Read these documents</button>
-              <button class="btn" id="clearFiles" type="button" data-t="clearFiles">Choose other photos</button>
+        </div>
+        <section class="proof" id="proof" aria-label="Held-out results"></section>
+      </div>
+      <div class="upload-layout">
+        <div class="upload-main">
+          <div class="panel">
+            <label class="dropzone" id="dropzone">
+              <input type="file" id="fileInput" multiple accept="image/*,.pdf,application/pdf" hidden>
+              <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></span>
+              <span class="drop-text"><b data-t="dropMain">Drag photos or PDFs here</b>
+                <small data-t="dropHint">JPG, PNG or PDF · up to 20 files · checked for photo quality before reading</small></span>
+              <span class="btn primary" data-t="dropButton">Choose files</span>
+            </label>
+            <div id="precheck" class="precheck" hidden>
+              <h3 data-t="precheckTitle">Photo check before reading</h3>
+              <ul id="precheckList" class="file-list"></ul>
+              <div class="row gap">
+                <button class="btn primary" id="readFiles" type="button" data-t="readFiles">Read these documents</button>
+                <button class="btn" id="clearFiles" type="button" data-t="clearFiles">Choose other photos</button>
+              </div>
             </div>
           </div>
-          <div class="demo-block">
-            <div class="row between">
-              <h2 data-t="demoTitle">Or try a fictional demo file</h2>
-              <span class="tag" data-t="fictional">Fictional people · synthetic documents</span>
+          <section class="panel demo-block" aria-labelledby="demoTitle">
+            <div class="panel-head">
+              <h2 id="demoTitle" data-t="demoTitle">Or try a fictional demo file</h2>
+              <span class="tag"><span data-icon="flask"></span><span data-t="fictional">Fictional people · synthetic documents</span></span>
             </div>
             <div id="demos" class="demo-grid"><p class="muted" data-t="loading">Loading…</p></div>
-          </div>
+          </section>
         </div>
         <aside class="panel awareness" aria-labelledby="awareTitle">
-          <span class="aware-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z M9 12l2 2 4-5"/></svg></span>
-          <h2 id="awareTitle" data-t="awareTitle">Before you upload your documents</h2>
+          <div class="aware-head">
+            <span class="aware-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></svg></span>
+            <h2 id="awareTitle" data-t="awareTitle">Before you upload your documents</h2>
+          </div>
           <ul class="tips" id="tips"></ul>
-          <div class="note">
+          <div class="note"><span data-icon="lock"></span><div>
             <b data-t="privacyTitle">Your privacy</b>
             <p data-t="privacyText">This agent runs on this computer; the photos are not sent anywhere. It reads and checks documents — it does not match faces, check liveness or detect forgery.</p>
-          </div>
-          <div class="note warn-note">
+          </div></div>
+          <div class="note warn-note"><span data-icon="alert"></span><div>
             <b data-t="demoOnlyTitle">Hackathon build</b>
             <p data-t="demoOnlyText">Use fictional sample documents only. Never upload a real identity document — yours or anyone else's.</p>
-          </div>
+          </div></div>
         </aside>
       </div>
     </div>
 
     <div class="stage" id="stage-read" hidden>
       <div class="panel reading">
-        <div class="spinner" aria-hidden="true"></div>
-        <div class="grow">
-          <h1 data-t="readingTitle">The agent is reading the file</h1>
-          <p class="lead" id="readingMessage" aria-live="polite"></p>
-          <progress id="readingProgress" max="100" value="0"></progress>
+        <div>
+          <div class="reading-head">
+            <span class="scan-mark" aria-hidden="true"><span data-icon="scan"></span></span>
+            <div class="grow">
+              <h1 data-t="readingTitle">The agent is reading the file</h1>
+              <p class="lead" id="readingMessage" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="reading-meta"><span id="readingPercent" class="num">0%</span><span id="readingElapsed" class="num"></span></div>
+          <progress id="readingProgress" max="100" value="0" aria-label="Reading progress"></progress>
           <ol class="agent-steps" id="agentSteps">
             <li data-t="aStep1">Find and separate each document in every photo</li>
             <li data-t="aStep2">Straighten, check photo quality, identify type and side</li>
@@ -98,6 +114,9 @@
             <li data-t="aStep4">Validate dates and formats, compare documents</li>
             <li data-t="aStep5">Score confidence and decide: pass or a person</li>
           </ol>
+        </div>
+        <div>
+          <p class="found-title"><span data-t="foundTitle">Documents found</span><span id="foundCount" class="chip neutral num">0</span></p>
           <div class="found" id="foundDocs"></div>
         </div>
       </div>
@@ -118,18 +137,19 @@
       <div class="result-layout">
         <div class="result-main">
           <section class="panel" id="reasonsPanel"><h2 data-t="reasonsTitle">What the reviewer must check</h2><ol id="reasons" class="reasons"></ol></section>
+          <nav class="doc-rail" id="docRail" aria-label="Documents in this file"></nav>
           <section id="documents" class="documents" aria-label="Documents"></section>
         </div>
         <aside class="result-side">
           <section class="panel"><h2 data-t="crossTitle">Cross-document checks</h2><div id="crossChecks"></div></section>
           <section class="panel"><h2 data-t="reqTitle">Required documents</h2><ul id="requirements" class="reqs"></ul></section>
           <section class="panel"><h2 data-t="summaryTitle">Note for the reviewer</h2><pre id="summary" class="summary"></pre>
-            <button class="btn small" id="copySummary" type="button" data-t="copy">Copy</button></section>
+            <button class="btn small" id="copySummary" type="button"><span data-icon="copy"></span><span data-t="copy">Copy</span></button></section>
           <section class="panel actions">
-            <button class="btn primary" id="printFile" type="button" data-t="print">Print the sorted file (PDF)</button>
-            <button class="btn" id="downloadReport" type="button" data-t="download">Download decision report (JSON)</button>
-            <a class="btn" id="openWorkspace" href="/workspace" data-t="openWorkspace">Open in reviewer workspace</a>
-            <button class="btn ghost-btn" id="newFile" type="button" data-t="newFile">Start a new file</button>
+            <button class="btn primary" id="printFile" type="button"><span data-icon="printer"></span><span data-t="print">Print the sorted file (PDF)</span></button>
+            <button class="btn" id="downloadReport" type="button"><span data-icon="download"></span><span data-t="download">Download decision report (JSON)</span></button>
+            <a class="btn" id="openWorkspace" href="/workspace"><span data-icon="users"></span><span data-t="openWorkspace">Open in reviewer workspace</span></a>
+            <button class="btn ghost-btn" id="newFile" type="button"><span data-icon="plus"></span><span data-t="newFile">Start a new file</span></button>
           </section>
         </aside>
       </div>
@@ -162,7 +182,7 @@
       <div class="panel"><h2 data-t="calTitle">Is the confidence honest?</h2><p class="muted small" data-t="calHelp">Each point: fields grouped by confidence. On the diagonal, "90%" really means right 90% of the time.</p><div id="reliability"></div></div>
       <div class="panel"><h2 data-t="levelTitle">From clean photos to the worst</h2><div id="levels"></div></div>
     </div>
-    <div class="panel"><h2 data-t="kindTitle">By document type</h2><div id="kinds"></div></div>
+    <div class="panel mt"><h2 data-t="kindTitle">By document type</h2><div id="kinds"></div></div>
   </section>
 </main>
 <div id="toast" role="status" aria-live="polite" hidden></div>

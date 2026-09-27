@@ -21,7 +21,9 @@ app/pipeline.py  per page:
         capture.assess          cut-off, glare, blur, dark, bright, contrast, tilt, too small
         arabic_ocr.read         PP-OCRv5: detect once, recognise every box in Arabic and English
         vision.classify         type + side from printed keywords and layout
-        understanding / focused_fields   label-anchored field reading, dates, MRZ, card serials
+        understanding / focused_fields   label-anchored field reading, dates, MRZ, card serials;
+                                         rows cut short by the page pass are re-read whole
+        understanding.second_opinion     EasyOCR re-reads key fields; exact agreement is evidence
         handwritten_digits + number_reader   handwritten Arabic-Indic numbers (models trained here)
         grouping / paired_fields             ID front ↔ back pairing
         │
@@ -50,13 +52,22 @@ app/kyc.py  (read-only decision layer)
 ## Confidence model
 
 1. **Own evidence** (`kyc.raw_confidence`). The OCR score is capped by the reading status: read 1.0 ·
-   uncertain .80 · approximate .60 · conflict .45 · partial date .30. Checksums (MRZ check digits, a paired
-   card serial) raise it to at least .97. Plausibility caps apply: a one-digit date part (.80), a one- or
-   two-letter name part (.60), Latin letters or digits inside an Arabic name (.40). Photo problems
-   multiply it: ×.85 when a retake is advised, ×.95 for a warning. A human-approved field is 1.0; a
-   missing or unreadable one is 0.
+   uncertain .80 · approximate .60 · conflict .45 · partial date .30. Independent evidence lifts it:
+   - **Check digits.** MRZ check digits or a paired card serial raise it to at least .97. An ID-back date
+     whose day, month and year agree with the MRZ date that passed its own check digit is no longer capped
+     as "approximate".
+   - **A second OCR engine.** EasyOCR re-reads the ID name parts and the licence and tax card numbers and
+     dates, independently of PaddleOCR. When it produces exactly the same value, the field is marked
+     `engines_agree` and lifted to at least .95. Any disagreement marks a conflict instead. On the tune
+     split, all 89 agreeing fields were right.
+
+   Plausibility caps still apply: a one-digit date part or a fragment set aside from a number (.80, unless
+   the second engine saw that row with exactly the value's digits), a one- or two-letter name part (.60),
+   Latin letters or digits inside an Arabic name (.40). Photo problems multiply it: ×.85 when a retake is
+   advised, ×.95 for a warning. A human-approved field is 1.0; a missing or unreadable one is 0.
 2. **Corroboration** (`kyc.corroborate`). The same fact read identically on two documents combines as
-   independent evidence: `1 − (1−a)(1−b)`, at most .99.
+   independent evidence: `1 − (1−a)(1−b)`, at most .99. A name confirmed by another document also confirms
+   the ID's matching name parts, position by position.
 3. **Calibration** (`models/kyc_calibration.json`). A monotone isotonic curve fitted on the tune split
    by `scripts/evaluate_kyc.py --fit`.
 4. **Threshold** (default .90, adjustable on the decision screen). The file goes to a person if any of

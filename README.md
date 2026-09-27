@@ -75,20 +75,22 @@ Or explore it yourself:
 
 1. **Before you upload.** The panel on the right teaches safe sharing: official channels only, fake-link
    warnings, four corners visible, no glare.
-2. Click **All documents in one photo**. One desk photo holds the ID (both sides), licence and tax card.
+2. Click **Complete, correct file**. Four clean photos of one fictional customer: the agent reads them,
+   cross-checks them and **passes the file on its own**, listing only optional notes for the reviewer.
+3. Click **All documents in one photo**. One desk photo holds the ID (both sides), licence and tax card.
    Watch the agent separate them, then show them sorted: ID front → ID back → licence → tax card.
-3. On the **decision** screen:
+4. On the **decision** screen:
    - drag the **confidence threshold**: fields cross the line and the decision updates live;
    - click any item under **What the reviewer must check**: it jumps to that field;
    - look at the **cross-document checks** and the **note for the reviewer** (English and Arabic);
    - **print the sorted file** (PDF) or **download the decision report** (JSON).
-4. Try **File with a deliberate error**. The licence has expired or belongs to someone else, and the agent
-   names the problem.
-5. Try **Very bad photos** (dark, shaky, a thumb over the text). Almost everything goes to a person, which
+5. Try **File with a deliberate error**. The licence belongs to someone else, and the agent blocks the file
+   for exactly that reason. (The demo split also holds an expired licence and an ID back from another card.)
+6. Try **Very bad photos** (dark, shaky, a thumb over the text). Almost everything goes to a person, which
    is exactly what should happen.
-6. Upload any photo with **Choose files**. Bad photos get retake advice **before** anything is read.
-7. Open **Evaluation** for held-out accuracy and the calibration curve, and **عربي** for the Arabic interface.
-8. **Reviewer workspace** (top right) is the full workbench: edit fields, re-crop, pair ID sides, print
+7. Upload any photo with **Choose files**. Bad photos get retake advice **before** anything is read.
+8. Open **Evaluation** for held-out accuracy and the calibration curve, and **عربي** for the Arabic interface.
+9. **Reviewer workspace** (top right) is the full workbench: edit fields, re-crop, pair ID sides, print
    layouts, and a training dashboard for the handwriting models.
 
 ## Install and run on your PC
@@ -199,7 +201,7 @@ More detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · handwriting models:
 | **Never** fills in a field it could not read | Enforced and tested: `kyc.py` is read-only; tolerant matching locates labels, never values |
 | A clear exception path with a human-readable summary | The reasons list (linked to each field) and the reviewer note, in English and Arabic |
 | Extraction accuracy on a held-out set | `scripts/evaluate_kyc.py --split heldout` → `eval/reports/kyc-heldout.md` |
-| Calibrated confidence | Isotonic calibration fitted on the tune split. ECE 0.082 → 0.055 on held-out |
+| Calibrated confidence | Isotonic calibration fitted on the tune split, reported on held-out (ECE 0.070). Independent evidence (check digits, a second OCR engine, a second document) lifts confidence; it never changes a value |
 | Sensible behaviour on the worst photos | 96.9% of worst-photo fields go to a person. 0 files with a planted problem pass |
 | **Stretch:** capture-time guidance | `app/capture.py` + `POST /api/capture-check`: which corner is cut off, where the glare is, blur, darkness, tilt |
 | Out of scope | Face matching, liveness and forgery detection are intentionally absent |
@@ -223,28 +225,44 @@ noise, JPEG). Threshold 0.90.
 
 | Measure | Result |
 |---|---|
-| **Accuracy of auto-accepted fields** | **98.8%** (critical fields 97.8%) |
+| **Accuracy of auto-accepted fields** | **99.2%** (critical fields 98.4%) |
 | **Files with a deliberate error that passed** | **0 of 8** |
 | **Passed files with a wrong critical field** | **0** |
-| Calibration error (ECE) | 0.082 uncalibrated → **0.055** calibrated |
+| Fields auto-accepted (no person needed) | **58.5%** of all fields |
+| Calibration error (ECE) | 0.077 uncalibrated → **0.070** calibrated |
 | Very bad photos: fields sent to a person | 96.9% |
-| Fields read / accuracy when read | 82.3% / 91.2% |
-| Fields auto-accepted: clean · poor · very bad photos | 62.5% · 41.9% · 3.1% |
+| Fields read / accuracy when read | 83.2% / 91.3% |
+| Fields auto-accepted: clean · poor · very bad photos | 89.2% · 58.1% · 3.1% |
 | Deliberate error named in the reviewer note | 75% (otherwise the key field was unreadable and flagged) |
 | Retake asked: clean · poor · very bad photos | 0% · 28.6% · 55.6% |
 | Document type and side correct | 87.5% |
-| Speed | about 5 s per photo on a laptop CPU |
+| Speed | about 7 s per photo on a laptop CPU |
 
-Fields scored 0.9–1.0 (mean 0.957) were right **98.8%** of the time (n = 167). Full report:
+Fields scored 0.9–1.0 (mean 0.972) were right **99.1%** of the time (n = 234). Full report:
 [eval/reports/kyc-heldout.md](eval/reports/kyc-heldout.md).
+
+**What changed in the last round.** Clean fields were being sent to people for no good reason, so the
+agent now uses more independent evidence. It never changes a value.
+
+- A **second OCR engine** re-reads names, numbers and dates. Exact agreement counts: on tune, 89 of 89
+  agreeing fields were right.
+- A date that matches the **MRZ check digit** now counts as confirmed.
+- **Rows the page scan cut short** are re-read whole.
+- A **name confirmed by another document** also confirms the matching parts of the ID name.
+
+Result on held-out: auto-accepted fields went from 41.8% to 58.5%, and their accuracy went from 98.8% to
+99.2%, with still 0 false passes.
 
 **Known limitations**
 
-- **No file without errors passed automatically (0 of 8).** Each had at least one critical field that was
-  unread or below the threshold, so a person saw it. This is safe, but not yet efficient.
+- **On held-out, no error-free file passed automatically yet (0 of 8).** Each one had a very bad photo, a
+  poor photo of a critical field, or a handwritten licence name, so a person saw it. Clean files do pass:
+  try **Complete, correct file** in the demo.
 - **Handwritten licence owner names** (a Diwani-style script) cause most misreadings. They are routed to a
   person.
-- On very bad photos only 18.5% of fields are read. 2 fields were auto-accepted there, and 1 was wrong.
+- Calibration error rose from 0.055 to 0.070 with the new evidence. The top bin is well calibrated (97.2%
+  stated, 99.1% observed), but the lower bins hold 12–35 fields each and are noisy.
+- On very bad photos only 20% of fields are read. 2 fields were auto-accepted there, and 1 was wrong.
 - **Glare** is detected in only 36% of the photos that have it.
 - The synthetic templates follow real layouts, but real documents vary more.
 
@@ -295,7 +313,7 @@ docs/                 architecture, handwriting models, optional cloud reader, s
 .\.venv\Scripts\python.exe scripts\synthetic_kyc.py --split heldout --cases 16
 .\.venv\Scripts\python.exe scripts\evaluate_kyc.py --split tune --fit     # calibration: tune only
 .\.venv\Scripts\python.exe scripts\evaluate_kyc.py --split heldout        # report only
-.\.venv\Scripts\python.exe scripts\synthetic_kyc.py --split demo --cases 8 --clean-copies
+.\.venv\Scripts\python.exe scripts\synthetic_kyc.py --split demo --clean-copies     # six scripted stories
 .\.venv\Scripts\python.exe scripts\demo_pile.py                           # "all in one photo" demos
 ```
 
@@ -384,15 +402,23 @@ used for research with citation.
 
 | المقياس | النتيجة |
 |---|---|
-| دقة الحقول المقبولة تلقائيًا | **98.8%** |
+| دقة الحقول المقبولة تلقائيًا | **99.2%** |
 | ملفات فيها خطأ متعمَّد قُبلت خطأً | **0 من 8** |
 | ملفات قُبلت وفيها حقل أساسي خاطئ | **0** |
-| خطأ المعايرة (ECE) | من 0.082 إلى **0.055** |
+| الحقول المقبولة تلقائيًا دون موظف | **58.5%** (كانت 41.8%) |
+| خطأ المعايرة (ECE) | من 0.077 إلى **0.070** |
 | حقول الصور الرديئة جدًا التي حُوِّلت إلى موظف | 96.9% |
 
+**آخر تحسين:** يستعين الوكيل الآن بأدلة مستقلة، ولا يغيّر أي قيمة:
+- محرك قراءة ثانٍ يعيد قراءة الأسماء والأرقام والتواريخ، ويُحتسب التطابق التام وحده دليلًا؛
+- مطابقة التاريخ لرقم التحقق في الشريط الآلي؛
+- إعادة قراءة السطور التي قُطعت في القراءة الأولى؛
+- تأكيد الاسم من مستمسك آخر.
+
 **حدود معروفة:**
-- لم يُقبل تلقائيًا أي ملف خالٍ من الأخطاء؛ كل ملف احتاج موظفًا لحقل واحد على الأقل. هذا آمن لكنه ليس
-  فعالًا بعد.
+- في مجموعة الاختبار لم يُقبل تلقائيًا بعد أي ملف خالٍ من الأخطاء. في كل ملف صورة رديئة جدًا، أو صورة
+  ضعيفة لحقل أساسي، أو اسم مكتوب باليد في الإجازة، فراجعه موظف. أما الملف ذو الصور الواضحة فيُقبل
+  تلقائيًا: جرّب «ملف مكتمل وصحيح» في التجربة.
 - أسماء أصحاب الإجازات المكتوبة باليد هي أضعف نقطة.
 - اكتشاف اللمعان ما زال محدودًا.
 

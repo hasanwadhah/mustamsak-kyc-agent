@@ -102,10 +102,21 @@ def valid_value(key,text):
         readings=date_readings(text)
         return next((r['value'] for r in readings if not r['approximate']), '')
     if key in ['national_number','document_number','family_number','form_number','house_number','license_number','tax_number']:
-        clean=re.sub(r'\s','',clean).strip(':：;،|.')
         patterns={'national_number':r'\d{12}','document_number':r'[A-Z0-9/-]{5,20}',
                   'family_number':r'[A-Z0-9]{10,22}','form_number':r'\d{3,12}','house_number':r'\d{1,6}(?:/\d{1,6})?',
                   'license_number':r'[A-Z0-9/-]{3,20}','tax_number':r'\d{6,15}'}
+        # A short detached fragment beside a complete number (a stray «79» next to a ten-digit
+        # tax number) is not part of it: gluing them would invent a different number.
+        # Only digit fragments are dropped; a letter prefix («AV 9293334», «BL 93262») belongs to the number.
+        # kyc.raw_confidence keeps such a reading below the auto-accept threshold.
+        groups=[g for g in (g.strip(':：;،|.') for g in clean.split()) if g]
+        fits=[i for i,g in enumerate(groups) if re.fullmatch(patterns[key],g)]
+        if len(groups)>1 and fits:
+            keep=max(fits,key=lambda i:len(groups[i]))
+            rest=[g for i,g in enumerate(groups) if i!=keep]
+            if all(g.isdigit() for g in rest) and len(groups[keep])>=2*sum(map(len,rest)):
+                return groups[keep]
+        clean=re.sub(r'\s','',clean).strip(':：;،|.')
         return clean if re.fullmatch(patterns[key],clean) else ''
     # Preserve the spelling actually read, including final ي/ى and ه/ة.
     if not re.search(r'[\u0621-\u064aA-Za-z]',text) or len(text)<2:return ''
@@ -292,16 +303,107 @@ def compare_ambiguous_names(image,fields):
         ch,cw=c.shape;canvas[offset:offset+ch,:cw]=c;boxes.append([0,cw,offset,offset+ch]);offset+=ch+12
     with vision._lock:
         outputs=vision.reader().recognize(canvas,horizontal_list=boxes,free_list=[],detail=1,batch_size=8)
+    agreed=set()
     for f,output in zip(records,outputs):
         _,text,score=output;text=valid_value(f['key'],text)
         if not text or score<.35:continue
         if f['key']=='sex' and not f.get('value'):
             f.update(value=text,confidence=round(float(score),3),status='uncertain',method='field_crop_easyocr')
+        elif f.get('value') and norm(text)==norm(f['value']):
+            agreed.add(id(f))
         elif f.get('value') and norm(text)!=norm(f['value']):
             f['status']='conflict'
             if not any(norm(c['value'])==norm(text) for c in f.setdefault('candidates',[])):
                 f['candidates'].append({'value':text,'confidence':round(float(score),3),'engine':'easyocr_arabic'})
             f['note']='اختلف محركا القراءة في الحروف؛ قارن الاقتراحات بالصورة.'
+    # Two independent recognizers spelling the same letters is evidence; any disagreement above wins.
+    for f in targets:
+        if id(f) in agreed and f.get('status')!='conflict':
+            f['engines_agree']=True
+
+SECOND_OPINION_KEYS=['license_number','tax_number','issue_date','expiry_date']
+
+def second_opinion_values(key,text):
+    """Every complete value of this field's shape that the second engine saw in a row crop."""
+    text=str(text).translate(str.maketrans('٠١٢٣٤٥٦٧٨٩','0123456789'))
+    if key.endswith('_date'):
+        from .focused_fields import date_readings
+        return {r['value'] for r in date_readings(text) if not r['approximate']}
+    if key=='tax_number':
+        return set(re.findall(r'(?<!\d)\d{6,15}(?!\d)',text))
+    # Licence numbers: a letter prefix, where the recognizer may print a lookalike digit («8L-12321» for BL).
+    # This only affects the comparison; the value shown is always the primary reading.
+    found=set(re.findall(r'(?<![A-Z0-9])[A-Z]{1,3}-?\d{3,12}(?![A-Z0-9])',text.upper()))
+    for prefix,number in re.findall(r'(?<![A-Z0-9])([A-Z0-9]{1,3})-(\d{3,12})(?![A-Z0-9])',text.upper()):
+        found.add(prefix.translate(str.maketrans('8015','BOIS'))+'-'+number)
+    return found
+
+def second_opinion(image,fields,keys=SECOND_OPINION_KEYS):
+    """Printed numbers and dates on licences and tax cards: re-read each field's row with the independent
+    EasyOCR recognizer. Only an exact match of the whole value is recorded (engines_agree); the value itself
+    is never changed and a mismatch leaves the field as it was."""
+    from . import vision
+    targets=[fields[k] for k in keys if k in fields and fields[k].get('value') and fields[k].get('box')
+             and fields[k].get('status') in ('read','uncertain')]
+    if not targets or not vision.ocr_available():return
+    crops=[];records=[]
+    h,w=image.shape[:2]
+    for f in targets:
+        b=bounds(f)
+        if not b:continue
+        pad=max(2,int(.01*h))
+        crop=image[max(0,int(b[1])-pad):min(h,int(b[3])+pad),max(0,int(b[0])-pad):min(w,int(b[2])+pad)]
+        if not crop.size:continue
+        gray=cv2.cvtColor(crop,cv2.COLOR_RGB2GRAY)
+        scale=min(3,64/max(1,gray.shape[0]));gray=cv2.resize(gray,None,fx=scale,fy=scale,interpolation=cv2.INTER_CUBIC)
+        records.append(f);crops.append(gray)
+    if not crops:return
+    with vision._lock:
+        outputs=[vision.reader().readtext(c,detail=1,paragraph=False,batch_size=8,workers=0) for c in crops]
+    for f,rows in zip(records,outputs):
+        text=' '.join(str(t) for _,t,score in rows if score>=.30)
+        value=re.sub(r'\s','',str(f['value'])).upper()
+        if value in {re.sub(r'\s','',v).upper() for v in second_opinion_values(f['key'],text)}:
+            f['engines_agree']=True
+            # The second engine saw no other digits in the row, so a fragment in the primary line was an echo.
+            digits=lambda s:re.sub(r'\D','',str(s).translate(str.maketrans('٠١٢٣٤٥٦٧٨٩','0123456789')))
+            f['second_reading_clean']=digits(text)==digits(value)
+
+def complete_value(key,value):
+    value=str(value or '')
+    if key.endswith('_date'):
+        from .focused_fields import date_readings
+        return any(r['value']==value for r in date_readings(value))
+    return bool(valid_value(key,value))
+
+def reread_rows(image,lines,fields,keys):
+    """Licence and tax card rows whose page reading stopped short («تاريخ النفاذ:07/14/»): the label was
+    found but no complete value. Re-read the whole row, from the card's edge to the label, with the
+    number recognizer. One complete value of the right shape is kept as an uncertain reading."""
+    from .textmatch import find_label
+    h,w=image.shape[:2]
+    rows=rows_from_lines(lines)
+    todo=[]
+    for key in keys:
+        if complete_value(key,fields.get(key,{}).get('value')):continue
+        row=next((r for r in rows for alias in ALIASES.get(key,[]) if find_label(norm(r['text']),norm(alias))),None)
+        b=bounds(row) if row else None
+        if not b:continue
+        pad=.35*(b[3]-b[1])
+        crop=image[max(0,int(b[1]-pad)):min(h,int(b[3]+pad)),0:min(w,int(b[2])+2)]
+        if crop.size:todo.append((key,b,crop))
+    for key,b,crop in todo:
+        # The same primary engine (detection + recognition) on the row alone; EasyOCR stays the independent check.
+        parts=[l for l in arabic_ocr.read(crop) if (l.get('confidence') or 0)>=.5]
+        text=' '.join(l['text'] for l in parts)
+        found=second_opinion_values(key,text) if key!='license_number' else \
+              set(re.findall(r'(?<![A-Z0-9])[A-Z]{1,3}-?\d{3,12}(?![A-Z0-9])',text.upper()))
+        if len(found)!=1:continue
+        value=found.pop()
+        digits=lambda s:re.sub(r'\D','',str(s).translate(str.maketrans('٠١٢٣٤٥٦٧٨٩','0123456789')))
+        score=min((l['confidence'] for l in parts if digits(value) in digits(l['text'])),default=.5)
+        fields[key]=field(key,value,score,quad(b),'row_reread','uncertain',raw_text=text,
+                          note='أُعيدت قراءة السطر كاملًا لأن القراءة الأولى توقفت قبل نهاية القيمة؛ قارن بالصورة.')
 
 def extract(image,lines,kind,side,base_fields):
     fields={f['key']:dict(f,status='uncertain',method='text_pattern') for f in base_fields}
@@ -336,12 +438,16 @@ def extract(image,lines,kind,side,base_fields):
                 f.update(value='',status='unreadable',note='قراءة خط اليد تحتاج مراجعة.')
     if image is not None and arabic_ocr.available():
         fields={f['key']:f for f in focused_fields.merge_refined(list(fields.values()),targeted)}
+        if kind in ('business_license','tax_card'):
+            reread_rows(image,lines,fields,[k for k in SECOND_OPINION_KEYS if k in SCHEMAS.get((kind,side),[])])
+            second_opinion(image,fields)
     if kind=='national_id' and side=='front':
         parts=[fields.get(k) for k in ['first_name','father_name','grandfather_name','surname']]
         if all(p and p.get('value') for p in parts):
             status='conflict' if any(p['status']=='conflict' for p in parts) else 'uncertain' if any(p['status']!='read' for p in parts) else 'read'
             fields['name']=field('name',' '.join(p['value'] for p in parts),min(p['confidence'] for p in parts),method='assembled_visible_names',status=status,
-                                note='مجمّع من الاسم والأب والجد واللقب؛ راجع مكوّناته.')
+                                note='مجمّع من الاسم والأب والجد واللقب؛ راجع مكوّناته.',
+                                **({'engines_agree':True} if all(p.get('engines_agree') for p in parts) else {}))
     if kind=='housing' and side=='back' and image is not None and arabic_ocr.available():
         from .housing_back import serial_field
         serial=serial_field(image,lines)

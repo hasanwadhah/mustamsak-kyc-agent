@@ -108,21 +108,34 @@ def raw_confidence(f, capture_issues=()):
     if f.get('key') == 'document_number' and f.get('pairing_eligible') and (
             f.get('serial_location') == 'below_portrait' or f.get('mrz_checksum')):
         score, basis = max(score, .97), 'checksum'
-    if (f.get('mrz_date_check') or {}).get('matches') is True:
+    # Day, month and two-digit year agree with the MRZ date that passed its own check digit: the
+    # "approximate" crop reading is then independently confirmed (a conflict still caps it below).
+    mrz_confirmed = (f.get('mrz_date_check') or {}).get('matches') is True and f.get('date_precision', 'full') == 'full'
+    if mrz_confirmed:
         score, basis = max(score, .97), 'checksum'
     if f.get('method') == 'text_pattern' and 'MRZ' in str(f.get('label', '')):
         score, basis = max(score, .95), 'checksum'
-    caps = {'read': 1.0, 'uncertain': .80, 'approximate': .60, 'conflict': .45}
+    # Two independent OCR engines produced the same letters (understanding.compare_ambiguous_names).
+    engines_agree = bool(f.get('engines_agree')) and status in ('read', 'uncertain')
+    if engines_agree:
+        score = max(score, .95)
+    caps = {'read': 1.0, 'uncertain': 1.0 if engines_agree else .80, 'approximate': .97 if mrz_confirmed else .60, 'conflict': .45}
     score = min(score, caps.get(status, .80))
-    if f.get('approximate'):
+    if f.get('approximate') and not mrz_confirmed:
         score = min(score, .60)
     if f.get('date_precision') == 'partial' or '??' in value:
         score = min(score, .30)
     # Plausibility of what was read (never used to change the value):
     raw_text = str(f.get('raw_text') or '').translate(DIGITS)
     key = f.get('key', '')
-    if key.endswith('_date') and re.search(r'(?<![\d])\d(?![\d])', raw_text):
+    # These two checks catch a lost or stray digit, unless the second engine read the row with exactly
+    # the value's digits and nothing else (understanding.second_opinion).
+    echo_ruled_out = engines_agree and bool(f.get('second_reading_clean'))
+    if key.endswith('_date') and re.search(r'(?<![\d])\d(?![\d])', raw_text) and not echo_ruled_out:
         score = min(score, .80)  # Printed dates are zero-padded; a one-digit part suggests a lost digit.
+    if key in FORMATS and raw_text and re.sub(r'[\s:：;،|.]', '', raw_text).upper() != value.replace(' ', '').upper() \
+            and not echo_ruled_out:
+        score = min(score, .80)  # A fragment was set aside from the line; a person confirms which part is the number.
     if key in NAME_KEYS:
         tokens = value.split()
         if any(len(t) <= 2 for t in tokens):
@@ -291,6 +304,7 @@ def document_fields(d):
     return fields
 
 
+NAME_PARTS = ['first_name', 'father_name', 'grandfather_name', 'surname']
 PERSON_NAME_DOCS = [('national_id', 'front'), ('passport', 'page'), ('driving', 'front'), ('driving', 'page'),
                     ('business_license', 'page'), ('tax_card', 'page')]
 
@@ -316,9 +330,21 @@ def corroborate(docs, fields_by_doc, raws):
         return out
 
     def support(d, key, partner, raw):
+        if (d['id'], key) not in raws:
+            return
         current = boosted.get((d['id'], key))
         if current is None or raw > current[1]:
             boosted[(d['id'], key)] = (partner, raw)
+
+    def support_parts(d, tokens, partner, partner_tokens, raw):
+        # The ID front's separate name parts share the evidence, position by position, where both names overlap
+        # (a triple name on the licence confirms the first three parts only).
+        if (d['kind'], d.get('side')) != ('national_id', 'front'):
+            return
+        for i, part in enumerate(NAME_PARTS):
+            value = (fields_by_doc[d['id']].get(part) or {}).get('value')
+            if i < min(len(tokens), len(partner_tokens)) and tokens[i] == partner_tokens[i] and name_tokens(value) == [tokens[i]]:
+                support(d, part, partner, raw)
 
     groups = [('name', PERSON_NAME_DOCS), ('national_number', None), ('birth_date', None),
               ('business_name', [('business_license', 'page'), ('tax_card', 'page')]),
@@ -333,9 +359,11 @@ def corroborate(docs, fields_by_doc, raws):
                     ta, tb = name_tokens(va), name_tokens(vb)
                     if ta == tb and len(ta) >= 2:
                         support(a, key, b, rb); support(b, key, a, ra)
+                        support_parts(a, ta, b, tb, rb); support_parts(b, tb, a, ta, ra)
                     elif compare_names(va, vb)[0] == 'pass':
                         shorter, other, other_raw = (a, b, rb) if len(ta) < len(tb) else (b, a, ra)
                         support(shorter, key, other, other_raw)
+                        support_parts(a, ta, b, tb, rb); support_parts(b, tb, a, ta, ra)
                 elif same_value(key, va, vb):
                     support(a, key, b, rb); support(b, key, a, ra)
     for (doc_id, key), (partner, partner_raw) in boosted.items():

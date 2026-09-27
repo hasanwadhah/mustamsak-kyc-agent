@@ -15,7 +15,8 @@ DIGITS = str.maketrans('٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹', '012345678901
 
 
 def normalize(text):
-    text = re.sub('[\u200e\u200f\u202a-\u202e\u2066-\u2069]', '', str(text)).translate(DIGITS).translate(str.maketrans('أإآٱىة', 'اااايه'))
+    # Persian yeh and kaf, which OCR models sometimes emit, compare equal to the Arabic letters.
+    text = re.sub('[\u200e\u200f\u202a-\u202e\u2066-\u2069]', '', str(text)).translate(DIGITS).translate(str.maketrans('أإآٱىةیک', 'اااايهيك'))
     return re.sub('[\u064b-\u065f\u0670\u0640]', '', text).replace('تااريخ', 'تاريخ')
 
 
@@ -27,7 +28,13 @@ def date_readings(text, allow_compact=False):
     # Restrict lookalike correction to a digit-shaped date token, not words.
     result = []
     pattern = r'(?<![\w])([0-9OolISB]{1,4})\s*[/\\.\-–—٫:|]\s*([0-9OolISB]{1,2})\s*[/\\.\-–—٫:|]\s*([0-9OolISB]{1,4})(?![\w])'
-    for match in re.finditer(pattern, raw):
+    # Year-first dates are matched first and blanked out, so a reversed echo such as
+    # «09/08/ 2028/09/08» cannot borrow the year of the real date as «09/08/2028».
+    year_first = list(re.finditer(pattern.replace('{1,4})\\s*', '{4})\\s*', 1), raw))
+    rest = raw
+    for match in year_first:
+        rest = rest[:match.start()] + ' ' * (match.end() - match.start()) + rest[match.end():]
+    for match in year_first + list(re.finditer(pattern, rest)):
         parts = list(match.groups())
         repaired = any(re.search('[OolISB]', p) for p in parts)
         clean = [p.translate(str.maketrans('OolISB', '001158')) for p in parts]
@@ -460,6 +467,31 @@ def check_chronology(fields):
                 f['status']='conflict';f['note']=f.get('note','')+' تسلسل التواريخ غير متوافق؛ راجع الصورة. لم تُغيّر الأرقام تلقائيًا.'
 
 
+def page_line_dates(result,regions,lines):
+    """A date row whose zoomed crop gave nothing: use the whole-page OCR line lying inside the same
+    field box, when it holds exactly one complete date. Same image, same engine; never a guess."""
+    from .understanding import field
+    for region in regions:
+        key=region['key']
+        if key not in DATE_KEYS or result.get(key,{}).get('value'):continue
+        area=np.asarray(region['box'],dtype=float).reshape(-1,2)
+        x1,y1=area.min(0);x2,y2=area.max(0)
+        inside=[]
+        for line in lines:
+            b=box_of(line)
+            if b is None:continue
+            cx,cy=b.mean(0)
+            if x1<=cx<=x2 and y1<=cy<=y2:inside.append(line)
+        reads=[(line,r) for line in inside for r in date_readings(line.get('text','')) if not r['approximate']]
+        if len({r['value'] for _,r in reads})!=1:continue
+        line,r=reads[0];score=float(line.get('confidence') or 0)
+        approximate=score<.90 or bool(region.get('layout_uncertain'))
+        result[key]=field(key,r['value'],score,line['box'],'page_line_in_field','approximate' if approximate else 'read',
+                          approximate=approximate,raw_text=r['raw_text'],date_precision='full',role_inferred=bool(region.get('role_inferred')),
+                          candidates=[{'value':r['value'],'confidence':score,'engine':'page_ocr'}],
+                          note='قراءة السطر كما ظهر في قراءة الصفحة كاملة داخل مربع الحقل؛ لم تنجح القراءة المقرّبة.')
+
+
 def extract(image,lines,kind,side):
     if image is None or not arabic_ocr.available():return {}
     if kind=='national_id' and side=='back':regions=national_regions(image,lines)
@@ -467,7 +499,9 @@ def extract(image,lines,kind,side):
     elif kind=='housing':regions=housing_regions(image,lines,side)
     else:return {}
     result=read_regions(image,regions)
-    if kind=='national_id' and side=='back':crosscheck_mrz(result,lines,image.shape)
+    if kind=='national_id' and side=='back':
+        page_line_dates(result,regions,lines)
+        crosscheck_mrz(result,lines,image.shape)
     if kind=='housing':
         result.update(address_parts(result.get('address',{})))
         address_region=next((r for r in regions if r['key']=='address'),None)

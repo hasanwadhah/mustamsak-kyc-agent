@@ -75,3 +75,11 @@ def test_a_single_card_photo_is_still_one_document():
     image[150:750, 200:1100] = 235  # one card filling most of the photo
     image[250:450, 260:420] = 150   # its portrait box: not a document of its own
     assert len(vision.detect_regions(image)) == 1
+
+
+def test_the_guided_tour_is_available_on_both_screens(client):
+    for page in ('/', '/workspace'):
+        html = client.get(page).text
+        assert '/static/tour.js' in html and '/static/tour.css' in html
+    tour = client.get('/static/tour.js').text
+    assert 'agentSteps' in tour and 'workspaceSteps' in tour and "tour=ws" in tour

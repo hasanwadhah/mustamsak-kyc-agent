@@ -4,6 +4,8 @@
    Every text from the server is set with textContent (never as HTML). */
 'use strict';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+// The address as opened (?batch=, ?lang=, ?tour=), kept before showView tidies the address bar.
+const START_PARAMS = new URLSearchParams(location.search);
 let lang = (() => {
   const asked = new URLSearchParams(location.search).get('lang');  // ?lang=ar opens the Arabic screen
   if (asked === 'ar' || asked === 'en') return asked;

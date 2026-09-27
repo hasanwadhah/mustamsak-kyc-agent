@@ -1,0 +1,29 @@
+/* Guided tour (static/tour.js), shared by the agent screen and the reviewer workspace. */
+.tour-spot[popover],.tour-card[popover]{position:fixed;inset:auto;margin:0;padding:0;border:0;overflow:visible;color:inherit;background:none}
+.tour-spot[popover]{border-radius:14px;box-shadow:0 0 0 9999px #0b201dd0;outline:3px solid #3aa596;outline-offset:2px;pointer-events:none;
+ transition:left .35s ease,top .35s ease,width .35s ease,height .35s ease;animation:tour-pulse 1.8s ease-in-out infinite}
+.tour-spot.none[popover]{outline:0;animation:none}
+@keyframes tour-pulse{0%,100%{outline-color:#3aa596}50%{outline-color:#8fe3d6}}
+.tour-card[popover]{background:#fff;color:#14292e;border-radius:16px;padding:18px 20px 16px;box-shadow:0 18px 60px #0008;
+ font-family:'Segoe UI',Tahoma,system-ui,sans-serif;font-size:14px;line-height:1.65;transition:left .35s ease,top .35s ease}
+.tour-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.tour-count{font-size:12px;font-weight:700;color:#12675d;letter-spacing:.2px}
+.tour-x{border:0;background:none;font-size:22px;line-height:1;cursor:pointer;color:#63777b;padding:2px 6px;border-radius:8px;min-height:auto}
+.tour-x:hover{background:#eef3f2}
+.tour-card h3{margin:0 0 6px;font-size:17px;line-height:1.35}
+.tour-card p{margin:0;color:#3d5156}
+.tour-progress{height:4px;border-radius:3px;background:#e6eeec;margin:14px 0 12px;overflow:hidden}
+.tour-progress i{display:block;height:100%;background:#12675d;border-radius:3px;transition:width .3s}
+.tour-nav{display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
+.tour-nav button,.tour-home{font:inherit;font-size:14px;border-radius:10px;padding:8px 16px;cursor:pointer;min-height:38px;display:inline-flex;align-items:center;text-decoration:none}
+.tour-back{border:1px solid #d6e0de;background:#fff;color:#14292e}
+.tour-back:disabled{opacity:.4;cursor:default}
+.tour-next{border:1px solid #12675d;background:#12675d;color:#fff;font-weight:600}
+.tour-next:hover:not(:disabled){background:#0b4c44}.tour-next:disabled{opacity:.75;cursor:progress}
+.tour-home{margin-inline-end:auto;color:#12675d;border:1px dashed #9cc7bd}
+.tour-launch{font:inherit;font-size:13px;font-weight:600;border:1px solid #12675d;background:#12675d;color:#fff;border-radius:9px;padding:7px 14px;
+ cursor:pointer;white-space:nowrap;min-height:36px}
+.tour-launch:hover{background:#0b4c44}
+@media (prefers-reduced-motion:reduce){.tour-spot[popover],.tour-card[popover]{transition:none;animation:none}}
+/* During the tour, pinned (sticky) columns scroll normally so every part can be brought into view. */
+html.touring .result-side,html.touring .awareness,html.touring .doc-image{position:static}

@@ -10,7 +10,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-local%20server-009688?logo=fastapi&logoColor=white)
 ![Runs offline](https://img.shields.io/badge/runs-100%25%20offline-12675d)
 ![Data](https://img.shields.io/badge/data-100%25%20fictional-12675d)
-![Tests](https://img.shields.io/badge/tests-296%20passing-2ea44f)
+![Tests](https://img.shields.io/badge/tests-297%20passing-2ea44f)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 <img src="docs/screenshots/02-decision-en.png" alt="Decision screen: four documents separated from one photo, fields with calibrated confidence, cross-document checks and the reviewer summary" width="860">
@@ -65,6 +65,13 @@ your computer**, and every document in this repository is **fictional**.
 ## A 3-minute demo for judges
 
 Start the app (see [Install and run](#install-and-run-on-your-pc)). It opens at **http://127.0.0.1:8766**.
+
+> **Fastest way:** click **▶ Guided tour** (top right). You only press **Next**. The tour drives the app
+> through one fictional file, from upload to the reviewer who receives the data, in 22 steps. It dims the
+> screen around the part it explains, and it works in English and Arabic.
+> To open a single step directly, use `http://127.0.0.1:8766/?tour=12`.
+
+Or explore it yourself:
 
 1. **Before you upload.** The panel on the right teaches safe sharing: official channels only, fake-link
    warnings, four corners visible, no glare.
@@ -273,14 +280,14 @@ scripts/              synthetic data, evaluation, training, setup, data audit
 eval/synthetic/       fictional documents: tune / heldout / demo splits with labels
 eval/reports/         evaluation reports (Markdown + JSON)
 models/               calibration + handwriting models trained in this project
-tests/                296 automated tests (pytest)
+tests/                297 automated tests (pytest)
 docs/                 architecture, handwriting models, optional cloud reader, screenshots
 ```
 
 ## Development
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q                              # 296 tests
+.\.venv\Scripts\python.exe -m pytest -q                              # 297 tests
 .\.venv\Scripts\python.exe scripts\check_no_real_data.py             # data audit
 
 # regenerate the fictional data and re-run the evaluation
@@ -332,6 +339,11 @@ used for research with citation.
 جهازك**، وكل المستمسكات في هذا المستودع **وهمية**.
 
 #### تجربة خلال 3 دقائق (للجنة التحكيم)
+
+**الأسرع:** اضغط **«▶ جولة تعريفية»** أعلى الشاشة، ثم اضغط «التالي» فقط. تأخذك الجولة في 22 خطوة مع ملف وهمي واحد، من الرفع
+حتى الموظف الذي يستلم البيانات، وتُظلِم الشاشة حول الجزء الذي تشرحه.
+
+أو جرّبه بنفسك:
 
 1. اقرأ لوحة **«قبل أن ترفع مستمسكاتك»**. فيها توعية بالمشاركة الآمنة: القنوات الرسمية فقط، الحذر من
    الروابط المزيفة، إظهار الزوايا الأربع، بلا لمعان.
